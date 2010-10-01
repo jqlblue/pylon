@@ -1,0 +1,10 @@
+<table class="datatable">
+<thead>
+<tr><td>订单号</td><td>订单时间</td><td>操作</td><td>支付方式</td><td>支付订单号</td><td>支付状态</td><td>详细信息</td><td>记录状态</td><td>配送状态</td><td>订单状态</td>{if $orderdetail[0].status!="SUCC"}<td></td>{/if}</tr>
+</thead>
+<tbody>
+
+<tr><td>{$orderdetail[0].id}</td><td>{$orderdetail[0].createtime}</td><td>{$handle}</td><td>{$orderdetail[0].paychannel}</td><td>{$payrecord->payid}</td><td>{$orderdetail[0].statuspay}</td><td>{$payrecord->data}</td><td>{$orderdetail[0].statusaccount}</td><td>{$orderdetail[0].statusdeliver}</td><td>{$orderdetail[0].status}</td>{if $orderdetail[0].status!="SUCC"}<td><a href="?do=order_deal&orderid={$orderdetail[0].id}&channel={$orderdetail[0].paychannel}" rel="facebox" >处理</td>{/if}</tr>
+
+</tbody>
+</table>

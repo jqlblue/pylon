@@ -1,0 +1,148 @@
+
+<div class="pay-type"><span class="result">充值</span></div>
+<div class="result-steps"><ul><li class="first-step done1" id="tofisrt"></li><li class="second-step done2"></li><li class="three-step"></li></ul></div>
+
+<div class="details">您选择了为游戏 "<span style="color:red">{$gamename}</span>" 充值 "<span style="color:red">{$product.name}</span>"</div>
+<form method="post" name="form0" id="form0" action='?do=payment_order'>
+<div class="result-do">
+	<ul>
+	<li><div class="do-word">充值的彩云帐号：</div><div class="do-input"><input type="text" name="username" value="{$user->username}"  id="payuser"/><span id="checkresult" style="color:red"></span></div></li>
+	<li><div class="do-word">重复输入充值帐号：</div><div class="do-input"><input type="text" name="reuser" id="ag_username" value="{$user->username}"/><span style="color:red"></span></div></li>
+	<li><div class="do-word">选择游戏服务器：</div><div class="do-input"><select name="service" id="service">{foreach from=$services item=val}<option value="{$val.key}">{$val.name}</option>{/foreach}</select></div></li>
+	</ul>
+</div>
+<div class="result-way">
+	<div class="select-number">
+		<div class="selected-way" id="paywaypic">你选择了 <span id="payway" style="color:#f00;">支付宝</span> 充值方式，请填写以下信息：</div>
+		<div id="declare">
+		<div class="ALIPAY-declare" >支付宝要求使用IE浏览器进行充值，为确保充值成功，建议您更换后继续操作。</div>
+		<div class="99BILL-declare"></div>
+		<div class="UNIONPAY-declare"></div>
+		</div>
+		<div class="start-select">
+			<div class="number-description">选择充值数量：</div>
+			<div class="number-list"><ul>
+					{foreach from=$product.showprice key=key item=item}
+                    <li><input type="radio" name="quantity" id="key{$key}" value="{$key}" /> 
+                    <span class="number-color"><label for="key{$key}">{$product.total[$key]}{$product.unit}{$product.alias}</label></span>
+                    （支付金额<span style="color:red">￥{$item}</span>元）</li>
+					{/foreach}
+			</ul></div>
+		</div>
+	</div>
+	<div class="ways">
+		<ul>
+		<li tag="ALIPAY">支付宝</li>
+		<li tag="99BILL">快&nbsp;&nbsp;钱</li>
+		<!--<li tag="UNIONPAY">银&nbsp;&nbsp;联</li>
+		<li tag="link">银&nbsp;&nbsp;联</li>-->
+		</ul>
+	</div>
+</div>
+<input type="hidden" name="paychannel" value='' id="paychannel" >
+<input type="hidden" name="gamekey" value='{$gameKey}' id="gamekey" >
+<input type="hidden" name="pdtkey" value='{$pdtkey}' id="pdtkey" >
+<input type="hidden" value="true" name="submit_payment_order"> 
+</form>
+<div class="pay-next2"><img src="images/pay/button_next.jpg" alt="下一步" id="dosubmit"/></div>	
+
+<script>
+var gamename = '{$gamename}';
+{literal}
+var result={
+	cando:false,
+	checkuser:function(username){
+		result.cando=false;
+		if(!$.trim(username)){
+			$('#payuser').next().html('请输入用户名');	
+		}else{
+			$('#payuser').next().html('检测中...');
+			if(gamename=='疯狂坦克')
+			 	datas = {'ajax':1,'username':username,'fktk':'FKTK','service':'IDC1'};
+			else
+				datas =  {'ajax':1,'username':username};			
+			$.ajax({
+				type:'GET',
+				url:location.href+'&time='+(new Date()).getTime(),
+				data:datas,
+				timeout:3000,
+				success:function(data){
+					//$('#payuser').next().html(data);					
+					if(data==1) {
+						$('#payuser').next().html('√'); 
+						result.cando=true;
+					}else if(data==2){
+						$('#payuser').next().html('请登录游戏创建角色');
+					}else{
+						$('#payuser').next().html('用户不存在');
+					}
+				}		
+			});
+			var ajaxObj = $('#checkresult');
+			ajaxObj.ajaxError(function(e,r,s,t){
+					ajaxObj.html('请求超时，请刷新该页面');
+			});
+		}		
+	},
+	init:function(){
+		$('#tofisrt').css('cursor','pointer').click(function(){ location="?do=payment"});
+		$('.ways li').css('cursor','pointer');
+		$('.ways li').click(function(){
+			var tag = $(this).attr('tag');
+			$('.ways li').removeClass('way-selected');
+			$(this).addClass('way-selected');
+			$('#declare > div').hide();
+			if(tag==='ALIPAY' && navigator.appName!=='Microsoft Internet Explorer')
+				$('.'+tag+'-declare').show();
+			$('#payway').html($(this).html());
+			$('#paychannel').val(tag);
+			$('#paywaypic').attr('class','selected-way').addClass('way'+tag);
+		});
+		$('.ways li').eq(0).click();
+		$('#payuser').focus(function(){ 
+				$(this).next().html('');
+		}).blur(function(){
+			var username = $(this).val();			
+				result.checkuser(username);
+							
+		});
+		$('#ag_username').focus(function(){ 
+				$(this).next().html('');
+		}).blur(function(){
+			var reu = $(this).val(),u = $('#payuser').val();
+			if(result.cando){
+				if(reu && reu === u)
+					$(this).next().html('√');
+				else
+					$(this).next().html('两次输入不一致');	
+			}
+		});
+		$('#dosubmit').css('cursor','pointer').click(function(){
+			result.dosubmit();
+			
+		});
+		$('input[name=quantity]:first').attr('checked',true);
+	},
+	dosubmit:function(){
+		var user = $('#payuser').val(),reuser = $('#ag_username').val();
+		if(result.cando ===false)
+			result.checkuser(user);
+		if(user === reuser && result.cando){
+			$('#form0').submit();					
+		}else if(user !== reuser)			
+			$('#ag_username').focus().next().html('两次输入不一致');					
+	
+			
+	}
+}
+
+$(function(){
+	result.init();
+});
+
+</script>
+{/literal}
+
+{if isset($errorMsg)}
+<script>history.back(-1);alert("{$errorMsg}"); </script>
+{/if}

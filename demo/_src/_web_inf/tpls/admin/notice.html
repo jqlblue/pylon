@@ -1,0 +1,10 @@
+{if isset($errorMsg)}
+<div id="_message" name="message"  style="display:none;" >
+    {$errorMsg} 
+</div>
+{/if}
+{if isset($successMsg)}
+<div id="_message"  name="message" style="display:none;">
+    <font color="red"><b>{$successMsg}  </b></font>
+</div>
+{/if}

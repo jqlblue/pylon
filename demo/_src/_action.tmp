@@ -1,0 +1,18 @@
+logic/actions/pay/payrecord_act.php:class PayRecordActions extends StageBaseAction 
+logic/actions/pay/payment_act.php:class PayMentAction extends AdminBaseAction 
+logic/actions/admin/pay_act.php:class PayAction extends AdminBaseAction {
+logic/actions/admin/main_act.php:class AdminMainAction extends ActionBase
+logic/actions/admin/staff_act.php:abstract class  ActionBase  extends XAction
+logic/actions/admin/staff_act.php:class LoginAction  extends ActionBase
+logic/actions/admin/staff_act.php:class StaffAction extends AdminBaseAction
+logic/actions/admin/website_act.php:class WebsiteAction extends AdminBaseAction
+logic/actions/stage/pub_act.php:class PublicAction extends StageBaseAction 
+logic/actions/action_base/baseaction.php:class SpriteAction extends EventAction2
+logic/actions/action_base/baseaction.php:class AdminBaseAction extends SpriteAction
+logic/actions/action_base/baseaction.php:class StageBaseAction extends SpriteAction
+logic/actions/action_base/action_utls.php:class ActionUtls
+logic/actions/common/common_act.php:class CommonActions extends SpriteAction
+logic/actions/common/user_act.php:class UserActionUtls
+logic/actions/common/user_act.php:class UserAction4Admin extends AdminBaseAction
+logic/actions/common/user_act.php:class UserAction4Stage extends StageBaseAction 
+logic/actions/common/module_act.php:class ModuleAction extends AdminBaseAction

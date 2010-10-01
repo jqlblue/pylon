@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注册分析</title>
+</head>
+{$theme->script('jquery-1.3.2.min.js')}
+<body>
+{literal}
+<style>
+body{ font-size:12px;}
+.xy{  width:700px;margin:0 auto;overflow:hidden}
+.x{float:left;width:25px;height:300px;padding-top:20px;}
+.x div{width:25px;height:29px;border-bottom:1px solid #0f0;line-height:40px;}
+.y{ float:left;  width:670px;overflow:hidden; }
+.y-axis{ width:600px;border-left:1px solid #f00;height:350px;}
+.zhu{float:left;background:#f00;border:1px solid #0f0;border-bottom:none;display:inline;}
+.y-info{width:670px;border-top:1px solid #f00;}
+.y-info div{float:left;height:20px;text-align:center;}
+</style>
+{/literal}
+<div id="show"></div>
+<div class='xy'>
+	<div class='des'>用户注册数柱状图</div>
+	<div class="x"></div>
+	<div class='y'>
+		<div class="y-axis"></div>
+		<div class='y-info'></div>		 
+	</div>	
+</div>
+
+
+{literal}
+<script>
+var timer = window.setInterval('getCanUseData()',1000);
+var comData={
+	href:location.href,
+	useData:[],	
+	bisector:10,
+	Count:0,
+	pixel:30
+} 
+var charts={
+	start:function(){
+		$.get(comData.href,{'ajax':1,'var':'firstdate'},function(date){
+			if(date){
+				date = $.trim(date);
+				charts.getMonsRegNo(date);			
+			}
+		});
+		
+	},
+	getMonsRegNo:function(date){
+		var curDate = new Date();
+		var currentYear = curDate.getFullYear(),currentMon = curDate.getMonth()+1,startingYear = date.substr(0,4),startingMon = date.substr(5,2);
+		var count=0;
+		for(year=startingYear;year<=currentYear;year++){
+			startMon = year==startingYear ? startingMon : 1;
+			endMon = year==currentYear ? currentMon : 12;
+			for(month=startMon;month<=endMon;month++){				
+				charts.getEveryMonRegNo(year,month,count);						
+				count++;
+			}			
+		}
+		comData.Count = count;
+	},
+	getEveryMonRegNo:function(year,month,i){
+		$.get(comData.href,{'ajax':1,'var':'mon','year':year,'month':month},function(num){
+			mon = month<10 ? '0'+month : month;
+			regnum =  year.toString()+mon.toString()+$.trim(num).toString();	
+			comData.useData[i]  =regnum;				
+		});
+	},
+	show:function(msg){
+		$('#show').append(msg+' ');
+	},
+	ClickMon:function(){
+		$('.y-info div:odd').css('cursor','pointer').live('click',function(){
+			yearMon = $(this).attr('ym');
+			if(yearMon){
+				year = yearMon.substr(0,4);
+				mon = yearMon.substr(4);
+				$.get(charts.href,{'ajax':true,'var':'mon','year':year,'month':mon,'day':true},function(data){
+					if(data)
+						charts.showMonCharts(data.split(','));
+				})
+			}
+		})
+		charts.close();
+	},
+	showMonCharts:function(data){
+		html = "<div class='xy"+year+mon+"'  style='width:"+$('.xy').css('width')+";margin:0 auto;overflow:hidden;'>"+$('.xy').html()+"</div>";
+		$('body').append(html);
+		var topDiv=".xy"+year+mon,count = data.length,days = [],maxNum=0,regNum = [];
+		$(topDiv+' .des').append(' （'+year+'年'+mon+'月 :双击关闭）');
+		for(i=0;i<count;i++){
+			temp = data[i].indexOf('|');
+			days[i] = (data[i]).substring(0,temp);
+			regNum[i] = parseInt(data[i].substr(temp+1));
+			if(i!=0){
+				if(regNum[i] > maxNum)
+					maxNum = regNum[i];
+			}else
+				maxNum = regNum[i];
+		}
+		scale = Math.floor(maxNum/comData.bisector);
+		if(scale<1) scale=1;
+		charts.showBisector(scale,topDiv);
+		charts.showPillar(count,regNum,scale,topDiv,days);
+	},
+	showHistogram:function(data){
+		maxHeight = this.anaMonData(data);
+		scale = Math.floor(maxHeight/comData.bisector);
+		if(scale<1) scale=1;
+		this.showBisector(scale,'.xy');
+		count = data.length;
+		heights = this.anaMonData(data,'getmonregno');
+		yearmon = this.anaMonData(data,'yearmon');
+		this.showPillar(count,heights,scale,'.xy',yearmon);
+		this.ClickMon();
+	},
+	showPillar:function(count,heights,scale,topDiv,date){
+		topDiv = topDiv+' ';		
+		widLen = parseInt($(topDiv+'.y-axis').css('width'));
+		width = widLen/(2*count);
+		var html='',info='',top = parseInt($(topDiv+'.y-axis').css('height'));
+		for(i=0;i<count;i++){
+			height = heights[i]/scale*(comData.pixel);
+			html+="<div class='zhu' style='height:"+height+"px;margin-top:"+(top-height-1)+"px;'></div>";
+			//如果显示的是月柱状图，date过来的就是日期（20），所以肯定小于32，年的柱状图date过来的是年月（200912）
+			if(parseInt(date[i])>31){
+				info+="<div></div><div style='color:#00f;' ym='"+date[i]+"'>"+(date[i]).substr(2,2)+"-"+(date[i]).substr(4,2)+"</div>";
+			}else{
+				info+="<div></div><div>"+date[i]+"日</div>";
+			}
+		}
+		$(topDiv+'.y-axis').html(html);
+		$(topDiv+'.zhu').css({'width':(width-2)+'px','margin-left':width+'px'});
+		$(topDiv+'.y-info').html(info).children('div').css({'width':width+'px'});
+		
+	},
+	showBisector:function(num,topDiv){	
+		topDiv = topDiv+' ';				
+		html = '';		
+		for(i=comData.bisector;i>0;i--){
+			html+= '<div>'+num*i+'</div>';
+		}
+		$(topDiv+'.x').html(html);
+	},
+	anaMonData:function(data,vars){
+		var end = data.length;
+		var array=[],maxnum=0,yearMon=[];
+		for(i=0;i<end;i++){
+			temp = data[i];
+			yearMon[i] = temp.substr(0,6);
+			array[i]=temp.substr(6);
+			if(i==0)
+				maxnum =parseInt(array[i]);										
+			else{
+				if(parseInt(array[i])>maxnum)					
+					maxnum =array[i];	
+			}						
+		}		
+		if(vars=='yearmon'){
+			return yearMon;
+		}else if(vars == 'getmonregno')
+			return array;
+		else
+			return maxnum;
+	},
+	close:function(){
+		$('div[class^=xy2]').live('dblclick',function(){
+			$(this).hide();
+		})
+	}
+}
+function getCanUseData(){
+	if((comData.useData).length==comData.Count){
+		clearInterval(timer);
+		charts.showHistogram(comData.useData);
+	}	
+}
+$(function(){
+	charts.start();
+	//charts.getMonRegNo(2010,1,1);
+	
+})
+</script>
+{/literal}
+</body>
+</html>

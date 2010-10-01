@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>彩云充值中心</title>
+{$theme->css('pay.css')}
+{$theme->script('jquery-1.3.2.min.js')}
+</head>
+<body>
+<div class="user-login">
+{if !$user}
+ 	<div class="login-account">
+		<div class="login">账户登录</div>
+	</div>
+	<div class="login-box">
+		<form method="post" name="formlogin" id="formlogin" action="?do=login">
+	    <div class="box-account"><span>帐号：</span><span class="box-input"><input type="text" name="logname" id="logname" /></span></div>
+	    <div class="box-psd"><span>密码：</span><span  class="box-input"><input type="password" name="passwd" id="psd" /></span></div>
+	    <div class="forgetpsd"><a href="{$forgetpsd}" target="_blank" title="忘记密码？">忘记密码？</a></div>
+<div class="login-sign"><img src="images/pay/button_login.jpg" alt="登录" id="loginsubmit" />&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$userreg}" target="_blank"><img src="images/pay/button_register.jpg" alt="注册" /></a>
+<input type="hidden" name="submit_login" value="true" id="payregister"/></div>			
+		</form>
+	</div>
+	{literal}
+	<script>	
+	$('#loginsubmit').css('cursor','pointer').live('click',function(){ $('#formlogin').submit();});
+	$('.login-box').live('keydown',function(e){ 
+		if(e.keyCode == 13)
+		{
+			var logname = $('#logname').val(),psd = $('#psd').val();
+			if(logname && psd)
+			{$('#loginsubmit').click();}
+		}
+	});		
+	</script>
+	{/literal}
+{else}
+	<div class="login-account">
+		<div class="login">账户登录</div>
+		<div class="logout"><a href="?do=logout">退出帐户</a></div>
+	</div>
+	<div class="account-infor">
+		<div class="infor-words">账户名：</div><div class="userinfor"><span style="font-weight:bold;">{$user->username}</span></div>
+		<div class="infor-words">帐户余额：</div><div class="userinfor"><span style="color:#f00; font-weight:bold;">{$userAccount->balance}</span> 个彩云币</div>
+	</div>
+{/if}
+</div>
+
+{if isset($errorMsg)}
+<script> alert("{$errorMsg}");</script>
+{/if}
+</body>
+</html>

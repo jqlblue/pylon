@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+        {$theme->css('style_admin.php')}
+        {$theme->script('js_admin_pkg.php')}
+        <title>{$appName}  后台管理 - 出错了!!</title>
+    </head>
+    <body>
+        <div id="_message" name="message"  style="display:none;" >
+            {$errorMsg} 
+            {$relate->failureNav()}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,169 @@
+<style>
+{literal} 
+.role,.tag {padding:3px;cursor:pointer;}
+.role-checked, .tag-checked {color:#ff0000;}
+.roletags {width:300px;line-height:15px;}
+{/literal} 
+</style>
+<script>
+var roles = [];
+var roletags = {ldelim} {rdelim};
+var rolecheck=[];
+var tagscheck={ldelim} {rdelim};
+{foreach item=role from=$website.role}
+rolecheck.push("{$role}");
+tagscheck["{$role}"] = [];
+{/foreach}
+{foreach item=tag from=$website.tags}
+tag      = "{$tag}";
+tagArr = tag.split("|");
+tagscheck[tagArr[0]].push(tagArr[1]);
+{/foreach}
+
+{foreach key=role item=tags from=$roletags}
+roles.push("{$role}");
+roletags["{$role}"] =[];
+{foreach item=tag from=$tags}
+roletags["{$role}"].push("{$tag}");
+{/foreach}
+{/foreach}
+{literal} 
+insertRoleTags = function()
+{	
+	roleVal = tagsVal = "";
+	$(".role-checked").each(function(){
+		roleVal += $(this).text()+" " ;
+	});
+	$("#role").val(roleVal);
+	$(".tag-checked").each(function(){
+		tagsVal += $(this).parent().attr("role")+"|"+$(this).text()+" ";
+	});
+	$("#tags").val(tagsVal);
+	return true;
+};
+{/literal}
+
+</script>
+<form id="website_add" action="?do={$_action}" method="post" ajaxmode="true" callbefore="insertRoleTags" name="website_add"  enctype="multipart/form-data">
+<table class="datatable border-noall" style="width:500px;">
+<tr>
+<th colspan=2>网站信息</th>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">域名 http://</td>
+<td><input type="text" name="domain" id="domain" class="text" maxlength="30" value="{$website.domain}"></td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">排序值</td>
+<td><input type="text" name="rank" id="rank" class="text" maxlength="30" value="{$website.rank}"></td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">网站名</td>
+<td><input type="text" name="name" id="name" class="text" maxlength="30" value="{$website.name}"><input type="button" class="buildSearchkey" value="生成 SearchKey" style="background:#ccc;height:18px;"/></td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">站点简介</td>
+<td> <textarea style="width:150px;height:50px;" name="desc" id="desc">{$website.desc}</textarea></td>
+</tr>
+<tr class="border-top">
+<th width="150" style="text-align:right;">分词工具</th>
+<th><input type="text" name="searchword" id="searchword" class="text"  value=""><input type="button" class="buildSearchkey" value="生成 SearchKey" style="background:#ccc;height:18px;"/></th>
+</tr>
+<tr>
+<td style="text-align:right;">搜索KEY</td>
+<td><input type="text" name="searchkey" id="searchkey"  class="hidden" value="{$website.searchkey_str}">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">角色</td>
+<td><input type="hidden" name="role" id="role"  class="text" value="{$website.role}"><div id="roles_choice"></div><br/>(-----点击选择 标红表示选中-----)</td>
+</tr>
+<tr class="border-top">
+<td style="text-align:right;">分类</td>
+<td><input type="hidden" name="tags" id="tags"  class="text" value="{$website.tags}"><div id="tags_choice"></div>(-----选取角色后 分类将相应变化-----)</td>
+</tr>
+<tr class="border-top">
+<td colspan=2 style="text-align:center;"><input type="hidden" name="siteid" value="{$website.id}"><input type="hidden" name="submit_{$_action}" value="true"><input type="submit" name="sub_{$_action}" id="sub_{$_action}" value="Done"></th>
+</tr>
+</table>
+</form>
+<script>
+Apollo.common.formCheck();
+{literal} 
+(function(){
+	$(".role").die("click");
+	$(".tag").die("click");
+	$(".role").live("click",function(){
+			role = $(this).text();
+			if($(this).hasClass("role-checked"))		
+			{		
+				$(this).removeClass("role-checked");
+				$(".roletags[role="+role+"]").remove();
+			}
+			else
+			{				
+				$(this).addClass("role-checked");
+				tags_html = "<p class='roletags' role='"+role+"'> |"+role+"| :  ";		
+				for(n=0;n<roletags[role].length;n++)
+				{
+					tags_html += "<span class='tag' tag='"+roletags[role][n]+"'>"+roletags[role][n]+"</span>";
+				}
+				$("#tags_choice").append(tags_html+"</p>");
+			}
+		});	
+	$(".tag").live("click",function(){
+		if($(this).hasClass("tag-checked"))	
+			$(this).removeClass("tag-checked");	
+		else
+			$(this).addClass("tag-checked");
+	});
+
+	var roles_length = roles.length;
+	var roles_html  = tags_html = "";
+	for(i=0;i<roles_length;i++)
+	{
+		roles_html += "<span class='role' role='"+roles[i]+"'>"+roles[i]+"</span>";
+	}
+	$("#roles_choice").html(roles_html);
+	for(i=0;i<rolecheck.length;i++)
+	{
+		$(".role[role='"+rolecheck[i]+"']").click();
+	}
+	for(i=0;i<rolecheck.length;i++)
+	{
+		role = rolecheck[i];
+		for(j=0;j<tagscheck[role].length;j++)
+		{
+			$(".roletags[role="+role+"] .tag[tag="+tagscheck[role][j]+"]").click();
+		}
+	}
+	$(".buildSearchkey").click(function(){
+		var string = $(this).siblings("input[type=text]").val();
+		if(string!="")
+		{
+			strArr = string.split(" ");
+			for(j=0;j<strArr.length;j++)
+			{
+				var searchKey = curKey = tempKey = "";
+				str = strArr[j];
+				if(str)
+				{
+					for(i=0;i<str.length;i++)
+					{
+						tempKey = str.substr(0,i+1);
+						if(curKey!=tempKey)
+						{
+							curKey = tempKey;
+							searchKey += curKey+",";
+						}
+					}
+					searchKey = searchKey.substr(0,searchKey.length-1);
+					if($("#searchkey").val()!="") searchKey = ","+searchKey;
+					$("#searchkey").val($("#searchkey").val()+searchKey);
+				}
+			}
+		}
+	}).css("cursor","pointer");	
+})();
+{/literal} 
+</script>
