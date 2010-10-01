@@ -1,4 +1,4 @@
-PSIONIC_HOME=$PSIONIC_HOME in=_prj/in.vim filter="*.py *.php *.sh *.vim *.ini *.txt *.conf *.sql *.yaml  *.html" {
+HOME=$PYLON_HOME in=_prj/in.vim filter="*.py *.php *.sh *.vim *.ini *.txt *.conf *.sql *.yaml  *.html" {
  deploy=deploy {
   pub.sh
   pub2apt.sh
@@ -328,9 +328,7 @@ PSIONIC_HOME=$PSIONIC_HOME in=_prj/in.vim filter="*.py *.php *.sh *.vim *.ini *.
   in.vim
  }
 }
-DEMO=$PSIONIC_HOME/demo in=$PSIONIC_HOME/_prj/in.vim {
- _pylon.py
- _pylon.pyc
+DEMO=$PYLON_HOME/demo in=$PYLON_HOME/_prj/in.vim {
  rigger.sh
   bin=bin {
   test.sh
@@ -339,64 +337,22 @@ DEMO=$PSIONIC_HOME/demo in=$PSIONIC_HOME/_prj/in.vim {
   build-patch.sh
   }
   _conf=_conf {
-  _appsys.yaml
-  _pylon.yaml
    build=build {
-   dev_cube_admin_ngx.conf
-   dev_cube_admin_php.ini
-   dev_cube_config.php
-   dev_cube_stage_ngx.conf
    }
    options=options {
-   tpl_config.php
-   tpl_crontab
-   tpl_ngx.conf
-   tpl_php.ini
-   tpl_syslog-ng.conf
    }
    used=used {
-   admin_config.php
-   admin_ngx.conf
-   admin_php.ini
    }
   }
   _prj=_prj {
-  build_loads.sh
-  doc.doxygen
-  in.vim
-  jsmin.php
-  my.py
-  my.pyc
-  prj.conf
-  srcindex.sh
   }
   _src=_src {
-  _action.tmp
-  _autoload_data.php
-  version.txt
   _apps=_apps {
    admin=admin {
-    admin_assembly.php
-    index.php
-    init.php
-    svc.php
-    validate.php
     actions=actions {
-     intecept.php
-     main_act.php
-     module_act.php
-     pay_act.php
-     staff_act.php
-     website_act.php
     }
    }
    console=console {
-    assemblys_console.php
-    call_qq.php
-    game_walle.php
-    init.php
-    qq.php
-    rsyn_cubes.sh
    }
    stage=stage {
     actions=actions {
@@ -406,108 +362,38 @@ DEMO=$PSIONIC_HOME/demo in=$PSIONIC_HOME/_prj/in.vim {
    }
   }
    _init=_init {
-   alter.sql
-   create_db.sql
-   init_obj.php
-   init_testdata.php
    }
   _logic=_logic {
    domain=domain {
     admin_sys=admin_sys {
-     staff_entity.php
     }
     module_sys=module_sys {
-     autoemail_interface.php
-     autoemail_svc.php
-     autoemail_utls.php
-     autopassport_entity.php
-     cube_interface.php
-     module_entity.php
-     module_query.php
-     module_svc.php
-     website_entity.php
-     website_interface.php
-     website_svc.php
     }
     pay_sys=pay_sys {
-     account_entity.php
-     account_query.php
-     game_def.php
-     order_entity.php
-     pay_svc.php
-     paychannel_def.php
      sdk=sdk {
       alipay=alipay {
-       alipay_notify.php
-       alipay_service.php
       }
      }
     }
     user_sys=user_sys {
-     auth_svc.php
-     user_entity.php
-     user_interface.php
-     user_query.php
-     user_svc.php
     }
     userconf_sys=userconf_sys {
-     userconf_entity.php
-     userconf_interface.php
-     userconf_svc.php
     }
     utls=utls {
-     acl_svc.php
-     actionNavi_svc.php
-     base_utls.php
-     filter_svc.php
-     html_utls.php
-     mail_post.php
-     mailpost_svc.php
-     mark_def.php
-     msg_svc.php
-     queue.php
-     sysconf_svc.php
-     taskquery.php
-     upload_svc.php
     }
    }
    integration=integration {
-    bdbsvc.php
-    exteral_svcs.php
-    logermanage.php
-    logger.php
-    logutls.php
-    mailsvc.php
-    occurdata.php
-    spyc.php
-    utilitys.php
-    websvcs.php
    }
    operates=operates {
     action_base=action_base {
-     action_utls.php
-     app_inputs.php
-     baseaction.php
-     theme.php
-     utask.php
     }
     common=common {
-     assemblys_comm.php
-     common_act.php
-     intecept.php
-     module_act.php
-     user_act.php
     }
    }
   }
    _web_inf=_web_inf {
     images=images {
-    favicon.ico
-    logo.gif
-    logo.jpg
      admin=admin {
-     menu_group_sep.gif
-     menu_group_sep_gray.gif
      }
      pui=pui {
       cluetip=cluetip {
@@ -522,26 +408,9 @@ DEMO=$PSIONIC_HOME/demo in=$PSIONIC_HOME/_prj/in.vim {
       }
      }
      user=user {
-     active_tabs1_bg.gif
-     button_b.png
-     people.gif
-     regbot.jpg
-     tabs1_bg.gif
      }
     }
     scripts=scripts {
-    account.js
-    apollo.adminplus.js
-    apollo_admin.js
-    apollo_common.js
-    apollo_stage.js
-    cube.js
-    jquery-1.3.2.min.js
-    jquery-1.4.2.min.js
-    jquery.easySlider.js
-    js_admin_pkg.php
-    js_stage_pkg.php
-    shieldedRight.js
      pui=pui {
       jquery=jquery {
       }
@@ -550,20 +419,6 @@ DEMO=$PSIONIC_HOME/demo in=$PSIONIC_HOME/_prj/in.vim {
      }
     }
     styles=styles {
-    ball_admin.css
-    ball_adminplus.css
-    game_qq.css
-    nav.css
-    pay.css
-    pstyle.css
-    reset.css
-    reset2.css
-    stage.css
-    style_admin.php
-    style_pui.php
-    style_stage.php
-    utask.css
-    utask2.css
      pui=pui {
       plugin=plugin {
       }
@@ -571,39 +426,6 @@ DEMO=$PSIONIC_HOME/demo in=$PSIONIC_HOME/_prj/in.vim {
     }
     tpls=tpls {
      admin=admin {
-     admin_alert.html
-     admin_error.html
-     admin_struct.html
-     admin_success.html
-     async_error.html
-     login.html
-     main.html
-     mainx.html
-     module_add.html
-     module_list.html
-     module_more.html
-     notice.html
-     op_prompt.php
-     order_deal.html
-     order_detail.html
-     order_list.html
-     page_admin.html
-     page_box_part.html
-     page_smt.html
-     pay_error.html
-     pay_success.html
-     pop_admin.html
-     popiframe.html
-     staff_list.html
-     stage_error.html
-     stage_success.html
-     table_tpl.php
-     testinfo.html
-     user_charts.html
-     user_list.html
-     website_add.html
-     website_edit.html
-     website_list.html
      }
      stage=stage {
      }

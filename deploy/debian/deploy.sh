@@ -21,11 +21,11 @@ cd $CUR_ROOT
 mkdir -p $CUR_ROOT/i386
 mkdir -p $CUR_ROOT/amd64
 VER=` cat $CUR_ROOT/../../src/version.txt`
-NAME="zlabs-psionic"
+NAME="zlabs-pylon"
 
-rm -rf tmp_psionic_amd64
-rm -rf tmp_psionic_i686
-$CUR_ROOT/mktree_ps.sh 'tmp_psionic_amd64'
-$CUR_ROOT/mktree_ps.sh 'tmp_psionic_i686'
-makePkg $CUR_ROOT/tmp_psionic_i686/  "i386"  $NAME $VER ""    $CUR_ROOT/deploy_action_lib.sh  
-makePkg $CUR_ROOT/tmp_psionic_amd64/ "amd64" $NAME $VER ""    $CUR_ROOT/deploy_action_lib.sh  
+rm -rf tmp_pylon_amd64
+rm -rf tmp_pylon_i686
+$CUR_ROOT/mktree_ps.sh 'tmp_pylon_amd64'
+$CUR_ROOT/mktree_ps.sh 'tmp_pylon_i686'
+makePkg $CUR_ROOT/tmp_pylon_i686/  "i386"  $NAME $VER ""    $CUR_ROOT/deploy_action_lib.sh  
+makePkg $CUR_ROOT/tmp_pylon_amd64/ "amd64" $NAME $VER ""    $CUR_ROOT/deploy_action_lib.sh  

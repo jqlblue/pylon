@@ -8,5 +8,5 @@ mkdir $TMP_DIR
 cd $TMP_DIR
 
 ############## deploy ###########
-mkdir -p home/z/psionic
-cp -Rf $PRJ_ROOT/src/* home/z/psionic/
+mkdir -p home/z/pylon
+cp -Rf $PRJ_ROOT/src/* home/z/pylon/
