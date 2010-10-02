@@ -1,0 +1,1649 @@
+PSIONIC_HOME=$PSIONIC_HOME in=_prj/in.vim filter="*.py *.php *.sh *.vim *.ini *.txt *.conf *.sql *.yaml  *.html" {
+ deploy=deploy {
+  pub.sh
+  pub2apt.sh
+  debian=debian {
+   deploy.sh
+   deploy_action_ide.sh
+   deploy_action_lib.sh
+   mktree_ide.sh
+   mktree_ps.sh
+  }
+ }
+ ide=ide {
+  setup.sh
+  version.txt
+  vim=vim {
+   runtime=runtime {
+    colors=colors {
+     oceandeep.vim
+    }
+    doc=doc {
+     EnhancedCommentify.txt
+     NERD_comments.txt
+     dbext.txt
+     funclist.txt
+     perl_doc.txt
+     project.txt
+     showmark.txt
+     taglist.txt
+     vcscommand.txt
+     vimcommander.txt
+     xml-plugin.txt
+    }
+    ftplugin=ftplugin {
+     DirDiff.vim
+     SQLUtilities.vim
+     closetag.vim
+     csharp.vim
+     ocaml_enhcomm.vim
+     perl.vim
+     perl_doc.vim
+     php_enhcomm.vim
+     python.vim
+     python_fold.vim
+     sqlplus.vim
+     xml.vim
+    }
+    indent=indent {
+     php.vim
+    }
+    plugin=plugin {
+     DirDiff.vim
+     DoxygenToolkit.vim
+     EnhancedCommentify.vim
+     ant_menu.vim
+     bufexplorer.vim
+     closetag.vim
+     cscope_macros.vim
+     ctags.vim
+     dbext.vim
+     genutils.vim
+     multvals.vim
+     phpfolding.vim
+     project.vim
+     ps_probe.vim
+     supertab.vim
+     svncommand.vim
+     taglist.vim
+     vcscommand.vim
+     vcscvs.vim
+     vcssvn.vim
+     vimcommander.vim
+    }
+    syntax=syntax {
+     CVSAnnotate.vim
+     SVNAnnotate.vim
+     actionscript.vim
+     podman.vim
+     svn.vim
+     svnlog.vim
+     vcscommit.vim
+    }
+   }
+  }
+ }
+ src=src {
+  autoload_data.php
+  version.txt
+  pylon=pylon {
+   autoload_data.php
+   version.txt
+   autoload=autoload {
+    build_includes.php
+    cache_svc.php
+    class_loads.php
+    tc_support.php
+   }
+   basesvc=basesvc {
+    idgenter_svcimp.php
+    locks.php
+    monitor_svc.php
+    session_mysql.php
+    session_svc.php
+   }
+   dba=dba {
+    executer.php
+    executer_imp.php
+    express.php
+    sql_constructor.php
+    sql_fastexecutor.php
+    trans_manager.php
+    translation.php
+   }
+   dbc=dbc {
+    dbc.php
+    debuger.php
+   }
+   framework=framework {
+    control.php
+    dao_utls.php
+    daobase.php
+    entity.php
+    eventaction.php
+    exceptions.php
+    obj_finder.php
+    proxy.php
+    query.php
+    unitwork.php
+   }
+   utls=utls {
+    args_checker.php
+    datapage.php
+    debug_utls.php
+    diagnosis.php
+    input_chk.php
+    join_utls.php
+    json.class.php
+    logutls.php
+    property.php
+    simple_websvc.php
+    status_machine.php
+    tree.php
+    utility.php
+    version.php
+   }
+   xmvc=xmvc {
+    build_conf.php
+    event_comm.php
+    event_mc2.php
+    relateact.php
+    xmvc.php
+    xmvc_ex.php
+    xmvc_impl.php
+   }
+  }
+  pylon_ui=pylon_ui {
+   autoload_data.php
+   setup.sh
+   version.txt
+   js=js {
+    js_load.php
+    jquery=jquery {
+    }
+    utls=utls {
+    }
+   }
+   module=module {
+    inputs.php
+    ucomdom.php
+    udom.php
+    ufilter.php
+    upage.php
+    utable.php
+    utable3.php
+    utabs.php
+   }
+   style=style {
+    brood=brood {
+     css=css {
+      css_load.php
+      plugin=plugin {
+      }
+     }
+     images=images {
+      cluetip=cluetip {
+      }
+      colorpicker=colorpicker {
+      }
+      facebox=facebox {
+      }
+      i=i {
+      }
+      stars=stars {
+      }
+     }
+    }
+   }
+   viewtpl=viewtpl {
+    popform.html
+    utabs.html
+   }
+  }
+  rigger=rigger {
+   cgi.py
+   inf.py
+   prj.py
+   res.py
+   run.py
+   sysconf.py
+   utls.py
+   version.py
+   kill_procs.sh
+   prj.yaml
+  }
+ }
+ test=test {
+  minerals=minerals {
+   bin_tc.py
+   minerals_ts.py
+   props=props {
+   }
+  }
+  probe=probe {
+   probe_ts.py
+   version_tc.py
+   zenv_tc.py
+   cmds.sh
+   props=props {
+    echo.sh
+    prjenv.ini
+    version.txt
+    version2.txt
+    create_db.sql
+    conf=conf {
+     builded=builded {
+      zwj_php.ini
+      zwj_zenv.conf
+     }
+     options=options {
+      app_conf_tpl.php
+      conf_online.php
+      php_online.ini
+      php_tpl.ini
+      tpl_my_php.ini
+      tpl_you_php.ini
+      zenv_online.conf
+      zenv_tpl.conf
+     }
+     used=used {
+     }
+    }
+    used=used {
+    }
+   }
+  }
+  pylon=pylon {
+   alltest.php
+   assembly_test.php
+   auto_act.php
+   autoload_data.php
+   phpcall.sh
+   unittest.sh
+   test_init.ini
+   tc_list.txt
+   basesvc=basesvc {
+    cachesvc_test.php
+    idgentsvc_test.php
+   }
+   config=config {
+    config_init.sh
+    build=build {
+    }
+    options=options {
+     conf_tpl.php
+     php_tpl.ini
+    }
+   }
+   datainit=datainit {
+    create_db.sql
+   }
+   dba=dba {
+    executer_tc.php
+    sql_construct_test.php
+    test_translation.php
+    crt_db.sql
+   }
+   dbc=dbc {
+    dbc_tc.php
+   }
+   framework=framework {
+    daoimp_test.php
+    entity_tests.php
+    entitys.php
+    framework_tc.php
+    objupdate_tc.php
+   }
+   utls=utls {
+    simple_websvc_tc.php
+    status_machine_tc.php
+    tree_test.php
+    utility_test.php
+   }
+   xmvc=xmvc {
+    acts_conf.php
+    eventmc_tc.php
+    xmvc_tc.php
+    xtest.php
+    error.html
+    xtest.html
+   }
+  }
+ }
+ guide=guide {
+  _pylon.py
+  _pylon.yaml
+  rigger.sh
+ }
+ _prj=_prj {
+  test_main.py
+  verup.php
+  build_loads.sh
+  build_index.sh
+  ci.sh
+  gscm.sh
+  init.sh
+  srcindex.sh
+  unit_test.sh
+  in.vim
+ }
+}
+DEMO=$PSIONIC_HOME/demo in=$PSIONIC_HOME/_prj/in.vim {
+ _pylon.py
+ _pylon.pyc
+ rigger.sh
+  bin=bin {
+  test.sh
+  }
+  deploy=deploy {
+  build-patch.sh
+  }
+  _conf=_conf {
+  _appsys.yaml
+  _pylon.yaml
+   build=build {
+   dev_cube_admin_ngx.conf
+   dev_cube_admin_php.ini
+   dev_cube_config.php
+   dev_cube_stage_ngx.conf
+   }
+   options=options {
+   tpl_config.php
+   tpl_crontab
+   tpl_ngx.conf
+   tpl_php.ini
+   tpl_syslog-ng.conf
+   }
+   used=used {
+   admin_config.php
+   admin_ngx.conf
+   admin_php.ini
+   }
+  }
+  _prj=_prj {
+  build_loads.sh
+  doc.doxygen
+  in.vim
+  jsmin.php
+  my.py
+  my.pyc
+  prj.conf
+  srcindex.sh
+  }
+  _src=_src {
+  _action.tmp
+  _autoload_data.php
+  version.txt
+  _apps=_apps {
+   admin=admin {
+    admin_assembly.php
+    index.php
+    init.php
+    svc.php
+    validate.php
+    actions=actions {
+     intecept.php
+     main_act.php
+     module_act.php
+     pay_act.php
+     staff_act.php
+     website_act.php
+    }
+   }
+   console=console {
+    assemblys_console.php
+    call_qq.php
+    game_walle.php
+    init.php
+    qq.php
+    rsyn_cubes.sh
+   }
+   stage=stage {
+    actions=actions {
+    }
+    api=api {
+    }
+   }
+  }
+   _init=_init {
+   alter.sql
+   create_db.sql
+   init_obj.php
+   init_testdata.php
+   }
+  _logic=_logic {
+   domain=domain {
+    admin_sys=admin_sys {
+     staff_entity.php
+    }
+    module_sys=module_sys {
+     autoemail_interface.php
+     autoemail_svc.php
+     autoemail_utls.php
+     autopassport_entity.php
+     cube_interface.php
+     module_entity.php
+     module_query.php
+     module_svc.php
+     website_entity.php
+     website_interface.php
+     website_svc.php
+    }
+    pay_sys=pay_sys {
+     account_entity.php
+     account_query.php
+     game_def.php
+     order_entity.php
+     pay_svc.php
+     paychannel_def.php
+     sdk=sdk {
+      alipay=alipay {
+       alipay_notify.php
+       alipay_service.php
+      }
+     }
+    }
+    user_sys=user_sys {
+     auth_svc.php
+     user_entity.php
+     user_interface.php
+     user_query.php
+     user_svc.php
+    }
+    userconf_sys=userconf_sys {
+     userconf_entity.php
+     userconf_interface.php
+     userconf_svc.php
+    }
+    utls=utls {
+     acl_svc.php
+     actionNavi_svc.php
+     base_utls.php
+     filter_svc.php
+     html_utls.php
+     mail_post.php
+     mailpost_svc.php
+     mark_def.php
+     msg_svc.php
+     queue.php
+     sysconf_svc.php
+     taskquery.php
+     upload_svc.php
+    }
+   }
+   integration=integration {
+    bdbsvc.php
+    exteral_svcs.php
+    logermanage.php
+    logger.php
+    logutls.php
+    mailsvc.php
+    occurdata.php
+    spyc.php
+    utilitys.php
+    websvcs.php
+   }
+   operates=operates {
+    action_base=action_base {
+     action_utls.php
+     app_inputs.php
+     baseaction.php
+     theme.php
+     utask.php
+    }
+    common=common {
+     assemblys_comm.php
+     common_act.php
+     intecept.php
+     module_act.php
+     user_act.php
+    }
+   }
+  }
+   _web_inf=_web_inf {
+    images=images {
+    favicon.ico
+    logo.gif
+    logo.jpg
+     admin=admin {
+     menu_group_sep.gif
+     menu_group_sep_gray.gif
+     }
+     pui=pui {
+      cluetip=cluetip {
+      }
+      colorpicker=colorpicker {
+      }
+      facebox=facebox {
+      }
+      i=i {
+      }
+      stars=stars {
+      }
+     }
+     user=user {
+     active_tabs1_bg.gif
+     button_b.png
+     people.gif
+     regbot.jpg
+     tabs1_bg.gif
+     }
+    }
+    scripts=scripts {
+    account.js
+    apollo.adminplus.js
+    apollo_admin.js
+    apollo_common.js
+    apollo_stage.js
+    cube.js
+    jquery-1.3.2.min.js
+    jquery-1.4.2.min.js
+    jquery.easySlider.js
+    js_admin_pkg.php
+    js_stage_pkg.php
+    shieldedRight.js
+     pui=pui {
+      jquery=jquery {
+      }
+      utls=utls {
+      }
+     }
+    }
+    styles=styles {
+    ball_admin.css
+    ball_adminplus.css
+    game_qq.css
+    nav.css
+    pay.css
+    pstyle.css
+    reset.css
+    reset2.css
+    stage.css
+    style_admin.php
+    style_pui.php
+    style_stage.php
+    utask.css
+    utask2.css
+     pui=pui {
+      plugin=plugin {
+      }
+     }
+    }
+    tpls=tpls {
+     admin=admin {
+     admin_alert.html
+     admin_error.html
+     admin_struct.html
+     admin_success.html
+     async_error.html
+     login.html
+     main.html
+     mainx.html
+     module_add.html
+     module_list.html
+     module_more.html
+     notice.html
+     op_prompt.php
+     order_deal.html
+     order_detail.html
+     order_list.html
+     page_admin.html
+     page_box_part.html
+     page_smt.html
+     pay_error.html
+     pay_success.html
+     pop_admin.html
+     popiframe.html
+     staff_list.html
+     stage_error.html
+     stage_success.html
+     table_tpl.php
+     testinfo.html
+     user_charts.html
+     user_list.html
+     website_add.html
+     website_edit.html
+     website_list.html
+     }
+     stage=stage {
+     }
+    }
+   }
+  }
+  tmp=tmp {
+  }
+ }
+
+ prj_tpl=$PSIONIC_HOME/prj_tpl in=$PSIONIC_HOME/_prj/in.vim {
+ _pylon.py
+ rigger.sh
+  _conf=_conf {
+  _pylon.yaml
+   options=options {
+   tpl_config.php
+   tpl_crontab
+   tpl_ngx.conf
+   tpl_php.ini
+   tpl_syslog-ng.conf
+   }
+   used=used {
+   admin_config.php
+   admin_ngx.conf
+   admin_php.ini
+   }
+  }
+  _prj=_prj {
+  doc.doxygen
+  in.vim
+  srcindex.sh
+  }
+ _src=_src {
+  _action.tmp
+  _autoload_data.php
+  version.txt
+  _apps=_apps {
+   admin=admin {
+    _act_conf.php
+    admin_assembly.php
+    index.php
+    init.php
+    svc.php
+    validate.php
+    actions=actions {
+     intecept.php
+     main_act.php
+     module_act.php
+     pay_act.php
+     staff_act.php
+     website_act.php
+    }
+   }
+   console=console {
+    assemblys_console.php
+    call_qq.php
+    game_walle.php
+    init.php
+    qq.php
+    rsyn_cubes.sh
+   }
+   front=front {
+   }
+  }
+  _init=_init {
+   alter.sql
+   create_db.sql
+   create_db2.sql
+   init_obj.php
+   init_testdata.php
+  }
+  _logic=_logic {
+   domain=domain {
+    admin=admin {
+     staff_entity.php
+    }
+    user=user {
+     auth_svc.php
+     user_entity.php
+     user_interface.php
+     user_query.php
+     user_svc.php
+    }
+    utls=utls {
+     acl_svc.php
+     actionNavi_svc.php
+     base_utls.php
+     filter_svc.php
+     html_utls.php
+     mail_post.php
+     mailpost_svc.php
+     mark_def.php
+     msg_svc.php
+     queue.php
+     sysconf_svc.php
+     taskquery.php
+     upload_svc.php
+    }
+   }
+   integration=integration {
+    bdbsvc.php
+    exteral_svcs.php
+    logermanage.php
+    logger.php
+    logutls.php
+    mailsvc.php
+    occurdata.php
+    spyc.php
+    utilitys.php
+    websvcs.php
+   }
+   operates=operates {
+    action_base=action_base {
+     action_utls.php
+     app_inputs.php
+     baseaction.php
+     theme.php
+     utask.php
+    }
+    common=common {
+     assemblys_comm.php
+     common_act.php
+     intecept.php
+     module_act.php
+     user_act.php
+    }
+   }
+  }
+  _web_inf=_web_inf {
+   images=images {
+    favicon.ico
+    logo.gif
+    logo.jpg
+    admin=admin {
+     menu_group_sep.gif
+     menu_group_sep_gray.gif
+    }
+    alimama=alimama {
+     100715.jpg
+    }
+    common=common {
+     button_b.png
+     yy_navi_bg.gif
+    }
+    nav=nav {
+     bg_top.gif
+     button_folding.gif
+     button_folding.png
+     button_folding_checked.gif
+     button_folding_checked.png
+     button_unfolding.gif
+     button_unfolding.png
+     button_unfolding_checked.gif
+     button_unfolding_checked.png
+     icon_airplane.gif
+     icon_calendar.gif
+     icon_cleanvirus.gif
+     icon_forex.gif
+     icon_fucai.gif
+     icon_fund.gif
+     icon_ipquery.gif
+     icon_life.gif
+     icon_map.gif
+     icon_networkspeed.gif
+     icon_phone.gif
+     icon_radio.gif
+     icon_site.gif
+     icon_stock.gif
+     icon_ticai.gif
+     icon_train.gif
+     icon_translate.gif
+     icon_tv.gif
+     icon_weather.gif
+    }
+    pay=pay {
+     FKTK.jpg
+     MHSG.jpg
+     MHSGZ.jpg
+     bg_login.jpg
+     bg_title.jpg
+     bg_top.jpg
+     button.jpg
+     button_errow.jpg
+     button_find.jpg
+     button_login.jpg
+     button_next.jpg
+     button_ok.jpg
+     button_register.jpg
+     game_disable.jpg
+     icon_cue.jpg
+     icon_detail.gif
+     icon_histroy.gif
+     icon_pay.gif
+     img_kuaiqian.jpg
+     img_zhifubao.jpg
+     pay_logo.jpg
+     step_1.jpg
+     step_1_undone.jpg
+     step_2.jpg
+     step_2_undone.jpg
+     step_3.jpg
+     step_3_undone.jpg
+     tab_checked.jpg
+     tab_unchecked.jpg
+     user_bg_top.jpg
+    }
+    pui=pui {
+     calendar.png
+     tab.png
+     visorFreemind.swf
+     cluetip=cluetip {
+      arrowdown.gif
+      arrowleft.gif
+      arrowright.gif
+      arrowup.gif
+      bl.gif
+      bl.png
+      br.gif
+      br.png
+      darrowdown.gif
+      darrowleft.gif
+      darrowright.gif
+      darrowup.gif
+      rarrowdown.gif
+      rarrowleft.gif
+      rarrowright.gif
+      rarrowup.gif
+      tl.gif
+      tl.png
+      tr.gif
+      tr.png
+      wait.gif
+     }
+     colorpicker=colorpicker {
+      arrow.gif
+     }
+     facebox=facebox {
+      b.png
+      bl.png
+      br.png
+      closelabel.gif
+      loading.gif
+      tl.png
+      tr.png
+     }
+     i=i {
+      accordion-left-act.png
+      accordion-left-over.png
+      accordion-left.png
+      accordion-middle-act.png
+      accordion-middle-over.png
+      accordion-middle.png
+      accordion-right-act.png
+      accordion-right-over.png
+      accordion-right.png
+      asc.gif
+      bg.gif
+      desc.gif
+      dialog-e.gif
+      dialog-n.gif
+      dialog-ne.gif
+      dialog-nw.gif
+      dialog-s.gif
+      dialog-se.gif
+      dialog-sw.gif
+      dialog-title.gif
+      dialog-titlebar-close-hover.png
+      dialog-titlebar-close.png
+      dialog-w.gif
+      menu-submenu.gif
+      resizable-e.gif
+      resizable-n.gif
+      resizable-ne.gif
+      resizable-nw.gif
+      resizable-s.gif
+      resizable-se.gif
+      resizable-sw.gif
+      resizable-w.gif
+      shadow.png
+      slider-bg-1.png
+      slider-bg-2.png
+      slider-handle.gif
+      tabs.gif
+     }
+     stars=stars {
+      delete.gif
+      star-left.gif
+      star-right.gif
+      star.gif
+     }
+    }
+    user=user {
+     active_tabs1_bg.gif
+     button_b.png
+     people.gif
+     regbot.jpg
+     tabs1_bg.gif
+    }
+   }
+   scripts=scripts {
+    account.js
+    apollo.adminplus.js
+    apollo_admin.js
+    apollo_common.js
+    apollo_stage.js
+    cube.js
+    jquery-1.3.2.min.js
+    jquery-1.4.2.min.js
+    jquery.easySlider.js
+    js_admin_pkg.php
+    js_stage_pkg.php
+    shieldedRight.js
+   }
+   styles=styles {
+    ball_admin.css
+    ball_adminplus.css
+    game_qq.css
+    nav.css
+    pay.css
+    pstyle.css
+    reset.css
+    reset2.css
+    stage.css
+    style_admin.php
+    style_pui.php
+    style_stage.php
+    utask.css
+    utask2.css
+    pui=pui {
+     css_load.php
+     plugin=plugin {
+      accordion.css
+      cluetip.css
+      colorPicker.css
+      datePicker.css
+      facebox.css
+      flora.accordion.css
+      flora.all.css
+      flora.calendar.css
+      flora.css
+      flora.dialog.css
+      flora.menu.css
+      flora.resizable.css
+      flora.shadow.css
+      flora.slider.css
+      flora.tablesorter.css
+      flora.tabs.css
+      menu.css
+      rating.css
+      ui.tabs.css
+     }
+    }
+   }
+   tpls=tpls {
+    admin=admin {
+     admin_alert.html
+     admin_error.html
+     admin_struct.html
+     admin_success.html
+     async_error.html
+     login.html
+     main.html
+     mainx.html
+     module_add.html
+     module_list.html
+     module_more.html
+     notice.html
+     op_prompt.php
+     order_deal.html
+     order_detail.html
+     order_list.html
+     page_admin.html
+     page_box_part.html
+     page_smt.html
+     pay_error.html
+     pay_success.html
+     pop_admin.html
+     popiframe.html
+     staff_list.html
+     stage_error.html
+     stage_success.html
+     table_tpl.php
+     testinfo.html
+     user_charts.html
+     user_list.html
+     website_add.html
+     website_edit.html
+     website_list.html
+    }
+    api=api {
+     default.html
+    }
+    front=front {
+    }
+   }
+  }
+ }
+  bin=bin {
+  test.sh
+  }
+  deploy=deploy {
+  build-patch.sh
+  }
+  tmp=tmp {
+   smarty=smarty {
+    templates_c=templates_c {
+    %%1A
+    1AB
+    1AB9BADF%%login.html.php
+    %%38
+    381
+    381BC749%%mainx.html.php
+    %%39
+    393
+    393B3261%%admin_struct.html.php
+    %%50
+    508
+    50825A23%%admin_error.html.php
+    %%EE
+    EE7
+    EE7B626B%%notice.html.php
+    }
+   }
+  }
+ }
+
+ prj_ins=/home/yunyou/devspace/prj_ins {
+ _pylon.py
+ my.py
+ prj.data
+ rigger.sh
+ tmp.sh
+  bin=bin {
+  test.sh
+  }
+  _conf=_conf {
+  app_sys.py
+  sys_load.py
+   build=build {
+   }
+   options=options {
+   }
+   used=used {
+   admin_nginx.conf
+   }
+  }
+  deploy=deploy {
+  build-patch.sh
+  }
+  _prj=_prj {
+  _pylon.py
+  build_loads.sh
+  doc.doxygen
+  in.vim
+  jsmin.php
+  my.py
+  prj.conf
+  srcindex.sh
+  }
+  _src=_src {
+  _action.tmp
+  _autoload_data.php
+  version.txt
+   _apps=_apps {
+    admin=admin {
+    _act_conf.php
+    admin_assembly.php
+    index.html
+    init.php
+    svc.php
+    validate.php
+    }
+    console=console {
+    assemblys_console.php
+    init.php
+    rsyn_cubes.sh
+    }
+    stage=stage {
+    index.html
+    init.php
+    live.html
+    stage_actions_conf.php
+    stage_assembly.php
+    svc.php
+    validate.php
+     api=api {
+     uc.php
+     }
+    }
+   }
+   _init=_init {
+   }
+   _logic=_logic {
+    actions=actions {
+     action_base=action_base {
+     action_utls.php
+     app_inputs.php
+     baseaction.php
+     theme.php
+     utask.php
+      ui_base=ui_base {
+      apollo_ui.php
+      block.utable.php
+      table_tpl.php
+      uchart.php
+      utable.php
+      utabs.php
+       openflashchart=openflashchart {
+       JSON.php
+       README.txt
+       json_format.php
+       ofc_area_base.php
+       ofc_area_hollow.php
+       ofc_area_line.php
+       ofc_bar.php
+       ofc_bar_3d.php
+       ofc_bar_base.php
+       ofc_bar_filled.php
+       ofc_bar_glass.php
+       ofc_bar_sketch.php
+       ofc_bar_stack.php
+       ofc_hbar.php
+       ofc_line.php
+       ofc_line_base.php
+       ofc_line_dot.php
+       ofc_line_hollow.php
+       ofc_line_style.php
+       ofc_pie.php
+       ofc_radar_axis.php
+       ofc_radar_axis_labels.php
+       ofc_radar_spoke_labels.php
+       ofc_scatter.php
+       ofc_scatter_line.php
+       ofc_shape.php
+       ofc_title.php
+       ofc_tooltip.php
+       ofc_upload_image.php
+       ofc_x_axis.php
+       ofc_x_axis_label.php
+       ofc_x_axis_labels.php
+       ofc_x_legend.php
+       ofc_y_axis.php
+       ofc_y_axis_base.php
+       ofc_y_axis_right.php
+       ofc_y_legend.php
+       open-flash-chart-object.php
+       open-flash-chart.php
+        js=js {
+        json2.js
+        swfobject.js
+        }
+        swf=swf {
+        ofc2.swf
+        }
+       }
+      }
+     }
+     admin=admin {
+     intecept.php
+     main_act.php
+     module_act.php
+     pay_act.php
+     staff_act.php
+     website_act.php
+     }
+     common=common {
+     assemblys_comm.php
+     common_act.php
+     intecept.php
+     module_act.php
+     user_act.php
+     }
+     pay=pay {
+     intecept.php
+     payment_act.php
+     payrecord_act.php
+     }
+     stage=stage {
+     intecept.php
+     pub_act.php
+     }
+    }
+    domain=domain {
+     admin_sys=admin_sys {
+     staff_entity.php
+     }
+     module_sys=module_sys {
+     autoemail_interface.php
+     autoemail_svc.php
+     autoemail_utls.php
+     autopassport_entity.php
+     cube_interface.php
+     module_entity.php
+     module_query.php
+     module_svc.php
+     website_entity.php
+     website_interface.php
+     website_svc.php
+     }
+     pay_sys=pay_sys {
+     account_entity.php
+     account_query.php
+     game_def.php
+     order_entity.php
+     pay_svc.php
+     paychannel_def.php
+      sdk=sdk {
+       alipay=alipay {
+       alipay_notify.php
+       alipay_service.php
+       }
+      }
+     }
+     user_sys=user_sys {
+     auth_svc.php
+     user_entity.php
+     user_interface.php
+     user_query.php
+     user_svc.php
+     }
+     userconf_sys=userconf_sys {
+     userconf_entity.php
+     userconf_interface.php
+     userconf_svc.php
+     }
+     utls=utls {
+     acl_svc.php
+     actionNavi_svc.php
+     base_utls.php
+     filter_svc.php
+     html_utls.php
+     mail_post.php
+     mailpost_svc.php
+     mark_def.php
+     msg_svc.php
+     queue.php
+     sysconf_svc.php
+     taskquery.php
+     upload_svc.php
+     }
+    }
+    integration=integration {
+    bdbsvc.php
+    exteral_svcs.php
+    logermanage.php
+    logger.php
+    logutls.php
+    mailsvc.php
+    occurdata.php
+    spyc.php
+    utilitys.php
+    websvcs.php
+    }
+   }
+   _web_inf=_web_inf {
+    images=images {
+    favicon.ico
+    logo.gif
+    logo_admin.jpg
+     admin=admin {
+     menu_group_sep.gif
+     menu_group_sep_gray.gif
+     }
+     cc=cc {
+     360.jpg
+     5star.jpg
+     arrow_Collapse.gif
+     arrow_expand.gif
+     background_top.jpg
+     banner.jpg
+     banner_pay.swf
+     banner_tankwb.gif
+     bg.jpg
+     bg_buttom.jpg
+     big0.jpg
+     big1.jpg
+     big2.jpg
+     big3.jpg
+     big4.jpg
+     button.jpg
+     button_download.jpg
+     button_s_download.jpg
+     cc_notice.jpg
+     con0.jpg
+     con1.jpg
+     con2.jpg
+     con3.jpg
+     con4.jpg
+     download_bg.jpg
+     favicon.ico
+     guide_menu_checked.jpg
+     home_banner.jpg
+     icon_caiyun.jpg
+     icon_faq.jpg
+     icon_im.jpg
+     icon_mail.jpg
+     icon_search.jpg
+     icon_toucai.jpg
+     icon_web.jpg
+     img_Official.jpg
+     img_ad.gif
+     img_advice.jpg
+     img_beta.jpg
+     img_finish.jpg
+     img_mail01.jpg
+     img_mail02.jpg
+     img_mail03.jpg
+     img_more.jpg
+     kf.jpg
+     logo.jpg
+     mail.jpg
+     main.jpg
+     menu_checked.jpg
+     mohuan.swf
+     news_bg.jpg
+     ok.jpg
+     qqfarm.jpg
+     qqfarm01.jpg
+     qqfarm02.jpg
+     rising.jpg
+     search.jpg
+     send.jpg
+     setting.jpg
+     site_help.jpg
+     small0.jpg
+     small1.jpg
+     small2.jpg
+     small3.jpg
+     small4.jpg
+     submit.jpg
+     talk.jpg
+     tcbanner.jpg
+     titlebar_left.jpg
+     titlebar_mid.jpg
+     titlebar_right.jpg
+     user_bg_top.jpg
+     user_logo.jpg
+     }
+     games=games {
+      fktk=fktk {
+      button_back.png
+      button_selservice.png
+      fktkbg.jpg
+      login.jpg
+      msg.jpg
+      select.jpg
+      }
+      mhsgz=mhsgz {
+      button_login.jpg
+      exit.jpg
+      login_bg.jpg
+      login_bg_check.jpg
+      newserver.gif
+      promptdialog.jpg
+      selserver_bg.jpg
+      server01.jpg
+      server02.jpg
+      server03.jpg
+      state01.gif
+      state02.gif
+      state03.gif
+      }
+      qq=qq {
+      360approve.jpg
+      award.jpg
+      bg_buttom.jpg
+      bg_top.jpg
+      button_copyurl.gif
+      button_download.gif
+      contents.gif
+      gifttext.gif
+      logo.gif
+      small_logo.gif
+      title.gif
+      update.gif
+      windmill.swf
+      }
+     }
+     nav=nav {
+     bg_top.gif
+     button_folding.gif
+     button_folding.png
+     button_folding_checked.gif
+     button_folding_checked.png
+     button_unfolding.gif
+     button_unfolding.png
+     button_unfolding_checked.gif
+     button_unfolding_checked.png
+     icon_airplane.gif
+     icon_calendar.gif
+     icon_cleanvirus.gif
+     icon_forex.gif
+     icon_fucai.gif
+     icon_fund.gif
+     icon_ipquery.gif
+     icon_life.gif
+     icon_map.gif
+     icon_networkspeed.gif
+     icon_phone.gif
+     icon_radio.gif
+     icon_site.gif
+     icon_stock.gif
+     icon_ticai.gif
+     icon_train.gif
+     icon_translate.gif
+     icon_tv.gif
+     icon_weather.gif
+     }
+     pay=pay {
+     FKTK.jpg
+     MHSG.jpg
+     MHSGZ.jpg
+     bg_login.jpg
+     bg_title.jpg
+     bg_top.jpg
+     button.jpg
+     button_errow.jpg
+     button_find.jpg
+     button_login.jpg
+     button_next.jpg
+     button_ok.jpg
+     button_register.jpg
+     game_disable.jpg
+     icon_cue.jpg
+     icon_detail.gif
+     icon_histroy.gif
+     icon_pay.gif
+     img_kuaiqian.jpg
+     img_zhifubao.jpg
+     pay_logo.jpg
+     step_1.jpg
+     step_1_undone.jpg
+     step_2.jpg
+     step_2_undone.jpg
+     step_3.jpg
+     step_3_undone.jpg
+     tab_checked.jpg
+     tab_unchecked.jpg
+     user_bg_top.jpg
+     }
+     pui=pui {
+     calendar.png
+     tab.png
+     visorFreemind.swf
+      cluetip=cluetip {
+      arrowdown.gif
+      arrowleft.gif
+      arrowright.gif
+      arrowup.gif
+      bl.gif
+      bl.png
+      br.gif
+      br.png
+      darrowdown.gif
+      darrowleft.gif
+      darrowright.gif
+      darrowup.gif
+      rarrowdown.gif
+      rarrowleft.gif
+      rarrowright.gif
+      rarrowup.gif
+      tl.gif
+      tl.png
+      tr.gif
+      tr.png
+      wait.gif
+      }
+      colorpicker=colorpicker {
+      arrow.gif
+      }
+      facebox=facebox {
+      b.png
+      bl.png
+      br.png
+      closelabel.gif
+      loading.gif
+      tl.png
+      tr.png
+      }
+      i=i {
+      accordion-left-act.png
+      accordion-left-over.png
+      accordion-left.png
+      accordion-middle-act.png
+      accordion-middle-over.png
+      accordion-middle.png
+      accordion-right-act.png
+      accordion-right-over.png
+      accordion-right.png
+      asc.gif
+      bg.gif
+      desc.gif
+      dialog-e.gif
+      dialog-n.gif
+      dialog-ne.gif
+      dialog-nw.gif
+      dialog-s.gif
+      dialog-se.gif
+      dialog-sw.gif
+      dialog-title.gif
+      dialog-titlebar-close-hover.png
+      dialog-titlebar-close.png
+      dialog-w.gif
+      menu-submenu.gif
+      resizable-e.gif
+      resizable-n.gif
+      resizable-ne.gif
+      resizable-nw.gif
+      resizable-s.gif
+      resizable-se.gif
+      resizable-sw.gif
+      resizable-w.gif
+      shadow.png
+      slider-bg-1.png
+      slider-bg-2.png
+      slider-handle.gif
+      tabs.gif
+      }
+      stars=stars {
+      delete.gif
+      star-left.gif
+      star-right.gif
+      star.gif
+      }
+     }
+     user=user {
+     active_tabs1_bg.gif
+     button_b.png
+     people.gif
+     regbot.jpg
+     tabs1_bg.gif
+     }
+    }
+    scripts=scripts {
+     pui=pui {
+     js_load.php
+     pui.js
+     uchat.js
+      jquery=jquery {
+      date.js
+      facebox.1-2.js
+      facebox.admin.js
+      facebox.js
+      jquery.1.2.6.min.js
+      jquery.ajaxSubmit.js
+      jquery.apollo.js
+      jquery.bgiframe.js
+      jquery.cluetip.js
+      jquery.colorPicker.js
+      jquery.cookie.js
+      jquery.datePicker.js
+      jquery.dimensions.js
+      jquery.elementReady.js
+      jquery.form.js
+      jquery.jfeed.js
+      jquery.menu.js
+      jquery.min.js
+      jquery.nindaf.editable.js
+      jquery.onImagesLoad.js
+      jquery.rating.js
+      jquery.scrollTo.js
+      jquery.serialScroll.js
+      }
+      utls=utls {
+      swfobject.js
+      }
+     }
+    }
+    styles=styles {
+     pui=pui {
+     css_load.php
+      plugin=plugin {
+      accordion.css
+      cluetip.css
+      colorPicker.css
+      datePicker.css
+      facebox.css
+      flora.accordion.css
+      flora.all.css
+      flora.calendar.css
+      flora.css
+      flora.dialog.css
+      flora.menu.css
+      flora.resizable.css
+      flora.shadow.css
+      flora.slider.css
+      flora.tablesorter.css
+      flora.tabs.css
+      menu.css
+      rating.css
+      ui.tabs.css
+      }
+     }
+    }
+    tpls=tpls {
+     admin=admin {
+     admin_alert.html
+     admin_error.html
+     admin_struct.html
+     admin_success.html
+     async_error.html
+     login.html
+     main.html
+     mainx.html
+     module_add.html
+     module_list.html
+     module_more.html
+     notice.html
+     op_prompt.php
+     order_deal.html
+     order_detail.html
+     order_list.html
+     page_admin.html
+     page_box_part.html
+     page_smt.html
+     pay_error.html
+     pay_success.html
+     pop_admin.html
+     popiframe.html
+     staff_list.html
+     stage_error.html
+     stage_success.html
+     table_tpl.php
+     testinfo.html
+     user_charts.html
+     user_list.html
+     website_add.html
+     website_edit.html
+     website_list.html
+     }
+    }
+   }
+  }
+  tmp=tmp {
+   smarty=smarty {
+    templates_c=templates_c {
+    }
+   }
+  }
+ }
+
+

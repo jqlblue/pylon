@@ -1,0 +1,14 @@
+.svn
+*.swp
+*.pyc
+*.deb
+.directory
+.zenv_init.sh
+build
+used
+cscope*
+smarty
+.*tmp
+prj.conf
+demo/_*
+tmp*
