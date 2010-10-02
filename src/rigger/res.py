@@ -88,24 +88,23 @@ class nginx_conf_tpl( file_tpl ):
         cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
         shell.execmd(cmd)
 
+class apache_conf_tpl( file_tpl ):
+    def config(self):
+        file_tpl.config(self)
+        dst_path  = "/etc/httpd/conf.d"
+        tpl =  'rm $PATH/$DST ;ln -s $SRC $PATH/$DST'
+        cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
+        shell.execmd(cmd)
 
-class apache( resource):
-    START_TPL     = '$ROOT/bin/apachectl start '
-    STOP_TPL      = '$ROOT/bin/apachectl stop'
-    RESTART_TPL   = '$ROOT/bin/apachectl restart'
-    LINK_CONF_TPL = 'rm $ROOT/conf/include/$DST ;ln -s $SRC $ROOT/conf/include/$DST'
-    def __ini__(self,install_dir="/usr/local/apache"):
-        temple_websvr.__ini__(self,install_dir)
-    @staticmethod
-    def createByConf(config,section):
-        root = ConfUtls.extendExp(config.get(section,"root"))
-        return  apache(root)
+
+class apache (resource):
     def start(self):
-        cmd = ' service apache2  start '
+        cmd = ' /sbin/service httpd start '
         shell.execmd(cmd)
     def stop(self):
-        cmd = ' service apache2  stop'
+        cmd = ' /sbin/service httpd stop'
         shell.execmd(cmd)
+
 
 
 class files (resource):
@@ -212,12 +211,20 @@ class copy(resource):
         shell.execmd(cmd)
 
 class path(resource):
-    paths=[]    
-    def __init__(self,*args):
-        self.ori_paths = args
+    env = None 
+    arr = []
+    dst = None
+    paths= []
+    def __init__(self,env,*args):
+        self.env = env
+        self.list = args
 
     def locate(self):
-        for v in self.ori_paths:
+        if not self.env is None:
+            self.env.locate()
+        if not self.dst is None:
+            self.paths.append( env_exp.value(self.dst))
+        for v in self.arr:
             v=  env_exp.value(v)
             self.paths.append( v )
     def config(self):

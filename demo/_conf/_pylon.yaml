@@ -3,25 +3,18 @@ sys:
             res: 
                 - !R.vars
                      defs: { APP_SYS: "admin", DOMAIN : "admin.${MAIN_DOMAIN}"  }
-                - !R.nginx_conf_tpl  
+                - !R.apache_conf_tpl  
                         env: !R.vars
                             defs:  { ADMIN_DOMAIN : "admin.${DOMAIN}",  FASTCGI_PORT: "${PORT_BASE}1" }
-                        tpl: "${PRJ_ROOT}/_conf/options/tpl_ngx.conf" 
-                        dst: "${PRJ_ROOT}/_conf/used/admin_ngx.conf" 
+                        tpl: "${PRJ_ROOT}/_conf/options/tpl_apc.conf" 
+                        dst: "${PRJ_ROOT}/_conf/used/admin_apc.conf" 
                         sudo: True
                 - !R.file_tpl
                         env : !R.vars
                                 defs: {}
                         tpl:  "${PRJ_ROOT}/_conf/options/tpl_config.php"
-                        dst:  "${PRJ_ROOT}/_conf/used/admin_config.php"
+                        dst:  "${PRJ_ROOT}/_src/_config.php"
                     
-                - !R.cgi_svc
-                    php_ini: !R.file_tpl 
-                            env : !R.vars
-                                    defs: { PRJ_INCLUDE : "${PRJ_ROOT}/_src:${PRJ_ROOT}/_conf/used/:${PSIONIC_HOME}/src/"   }
-                            tpl:  "${PRJ_ROOT}/_conf/options/tpl_php.ini"
-                            dst:  "${PRJ_ROOT}/_conf/used/admin_php.ini"
-                    port: "${PORT_BASE}1"
                 - !R.action
                     ini: "${PRJ_ROOT}/_conf/used/admin_php.ini"
                     src: "${PRJ_ROOT}/_src/ : ${PRJ_ROOT}/_src/_apps/admin/"
@@ -35,9 +28,9 @@ env:
     dev: !R.vars 
         defs : 
             MAIN_DOMAIN: "pylon.cn" 
-            SRC_ROOT: "${PSIONIC_HOME}/demo/_src" 
-            PRJ_ROOT: "${PSIONIC_HOME}/demo" 
-            GATE_PATH : "${PSIONIC_HOME}/demo/src/apps"
+            SRC_ROOT: "${PYLON_HOME}/demo/_src" 
+            PRJ_ROOT: "${PYLON_HOME}/demo" 
+            GATE_PATH : "${PYLON_HOME}/demo/src/apps"
             PORT_BASE : "901"
             DB_HOST: "127.0.0.1"
             DB_NAME: "demo_db"
@@ -63,5 +56,7 @@ prj: !R.prj
             user: "${DB_USER}"
             password: "${DB_PWD}"
             sql : "${SRC_ROOT}/_init/create_db.sql"
-        - !R.nginx  
+        - !R.apache
             sudo : True 
+        - !R.path 
+            dst :  "${PRJ_ROOT}/tmp/smarty/templates_c"

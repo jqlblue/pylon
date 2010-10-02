@@ -443,7 +443,7 @@ class ExecEnabledCmd implements ICommand
 
         }/*}}}*/
         $autoScope = null;
-        return $result;
+//        return $result;
     }/*}}}*/
 }/*}}}*/
 

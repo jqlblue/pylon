@@ -1,9 +1,9 @@
 <?php
+require_once("../../_config.php");
 require_once('pylon/autoload/class_loads.php');  //autoload class 
-require_once('admin_config.php');               
-
-$pl = Conf::PSIONIC . "/pylon/";
-$pui= Conf::PSIONIC . "/pylon_ui/";
+//require_once('admin_config.php');               
+$pl = Conf::PYLON. "/pylon/";
+$pui= Conf::PYLON. "/pylon_ui/";
 ComboLoader::setup(__FILE__ 
     ,new ClassLoader($pl,"$pl/autoload_data.php")   //sgtlib autoload data
     ,new ClassLoader($pui,"$pui/autoload_data.php")   

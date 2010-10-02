@@ -233,10 +233,10 @@ class XController
 
             $xcontext->_action      = $actionName;
             $xcontext->_action_op   = $actionOp;
-            $xcontext->_action_name  = $cmdChain->name;
+//            $xcontext->_action_name  = $cmdChain->name;
             $xcontext->action       = $actionName;
             $xcontext->action_op    = $actionOp;
-            $xcontext->action_name  = $cmdChain->name;
+//            $xcontext->action_name  = $cmdChain->name;
 
 
 

@@ -1,4 +1,6 @@
 <?php
+$prj_path  = "${PYLON_HOME}/src/:${PRJ_ROOT}/_src:/home/z/php:";
+set_include_path($prj_path.get_include_path() );
 class DBconf 
 {/*{{{*/
     public $host="${DB_HOST}";
@@ -16,7 +18,7 @@ class Conf
     const JS_VER=2;
     const CSS_VER=2;
     const DEBUG_ENABLE=true;
-    const PSIONIC='${PSIONIC_HOME}/src';
+    const PYLON='${PYLON_HOME}/src';
     const ZMARK_ROOT='/home/z/php/zmark/';
 
     const ADMIN_TPL_PATH='_src/_web_inf/tpls/admin/';

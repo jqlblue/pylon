@@ -9,14 +9,14 @@ class DBconf
 
 class Conf
 {
-    const PRJ_ROOT='/home/yunyou/devspace/psionic/demo';
+    const PRJ_ROOT='/home/dev/devspace/pylon/demo';
     const APP_NAME = 'PYLON管理后台';
     const JS_RELEASE=false;
     const CSS_RELEASE=false;
     const JS_VER=2;
     const CSS_VER=2;
     const DEBUG_ENABLE=true;
-    const PSIONIC='/home/yunyou/devspace/psionic/src';
+    const PSIONIC='/home/dev/devspace/psionic/src';
     const ZMARK_ROOT='/home/z/php/zmark/';
 
     const ADMIN_TPL_PATH='_src/_web_inf/tpls/admin/';

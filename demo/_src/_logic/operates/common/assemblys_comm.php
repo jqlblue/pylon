@@ -23,7 +23,7 @@ class CommonAssemply
                                    SimpleQueryFactory::funIns($executer));
 
 
-        ApolloMail::init();
+//        ApolloMail::init();
         $singleOrderDao = DaoImp::simpleTableDao('SingleOrder','orders',   $executer);
         $mutiOrderDao   = DaoImp::simpleTableDao('MutiOrder','orders',   $executer);
         $orderStoreDao  = DaoImp::simpleTableDao('OrderStore','orders',   $executer);

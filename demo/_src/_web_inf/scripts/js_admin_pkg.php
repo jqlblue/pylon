@@ -1,5 +1,5 @@
 <?php
-require_once("admin_config.php");
+require_once("../../_config.php");
 $lib = "pui";
 $jsfile[] = "jquery-1.3.2.min.js";
 $jsfile[] = "$lib/jquery/jquery.apollo.js";

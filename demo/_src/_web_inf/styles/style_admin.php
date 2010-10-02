@@ -1,5 +1,5 @@
 <?php
-include("admin_config.php");
+include("../../_config.php");
 include("pui/css_load.php");
 $style="pui";
 $cssfile= array( 

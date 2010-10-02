@@ -1,4 +1,4 @@
-root=$PSIONIC_HOME
+root=$PYLON_HOME
 cd $root
 rm -rf prj/cscope.*
 find $root/ -name "*.py" > _prj/cscope.files
