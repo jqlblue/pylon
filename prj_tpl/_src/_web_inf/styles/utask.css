@@ -1,0 +1,67 @@
+.utask {
+    margin:5px auto;
+}
+.utask .utasknavi {
+    padding-bottom:15px;
+    margin:0 auto;
+}
+.utask .utasknavi .steps {
+    overflow:hidden;
+}
+.utask .utasknavi .steps li {
+    float:left;
+    line-height:51px;
+    height:51px;
+    margin-left:-1px;
+    overflow:hidden;
+}
+.utask .utasknavi .steps li span {
+    background-color:#FFFFDB;
+    border-bottom:6px solid #FFEBC0;
+    border-left:1px dotted #FE9900;
+    color:#9A9899;
+    line-height:29px;
+    text-align:center;
+    height:29px;
+    display:block;
+    padding:4px 0 5px;
+}
+.utask .utasknavi .steps li span strong{
+    font-size:16px;
+    font-family:"georgia";
+}
+.utask .utasknavi .steps li.cur {
+    background: transparent url(/images/admin/orange_arrowdown.gif) no-repeat center bottom;
+}
+.utask .utasknavi .steps li.cur span {
+    border-bottom:6px solid #FE9900;
+    color:#FE9900;
+    font-size:14px;
+}
+.utask .utasknavi .steps li a {
+    color:#9A9899;
+}
+.utask .utasknavi .steps li.cur span a {
+    color:#FE9900;
+    font-size:14px;
+}
+.utask .utaskbottom {
+    padding:1.5em 0.8em;
+    text-align:right;
+}
+.utask span input.button{
+    cursor:pointer;
+    background:#2782D6 none repeat scroll 0 0;
+    border-color:#DDDDDD #264F6E #264F6E #DDDDDD;
+    border-style:solid;
+    border-width:1px;
+    color:#FFFFFF;
+    height:24px;
+    letter-spacing:1px;
+    line-height:17px;
+    padding:2px 6px;
+    text-align:center;
+}
+.utask .utasknavi .steps li, .utask .utasknavi .steps li span {
+    width:200px;
+}

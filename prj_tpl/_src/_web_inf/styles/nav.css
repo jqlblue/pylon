@@ -1,0 +1,46 @@
+@import url(reset.css);
+a{ color:#000;text-decoration:none;}
+a:hover{ text-decoration:underline; color:#f00;}
+.weblist{height:404px; overflow-x:hidden; overflow-y:auto;background:#fff;}
+.sort{ height:31px; line-height:31px;}
+.sort.odd{ background:#def1ff;}
+.sort div{ float:left;}
+
+.sort-name{ width:90px; text-align:center;color:#7f7f7f; }
+.sort-name span{ color:#0095e9; cursor:pointer;font-weight:bold;}
+.sort-name.odded{ background:#c6e7ff;}
+.sort-five{ width:420px;}
+.sort-five span{ display:inline; float:left; margin-left:12px; margin-right:10px;}
+.sort-more{ width:35px; text-indent:10px;cursor:pointer;}
+.sort-more span{display:block;background-repeat:no-repeat;background-position:0 6px;width:18px;height:24px;}
+.sort-more span.moredefault{background-image:url(/images/nav/button_unfolding.gif);}
+.sort-more span.moreover{background-image:url(/images/nav/button_unfolding_checked.gif);}
+.sort-more span.moreclick{background-image:url(/images/nav/button_folding.gif);}
+.sort-more span.clickover{background-image:url(/images/nav/button_folding_checked.gif);}
+
+.ss-more{ padding:8px 12px; _width:525px; overflow:hidden; border:2px solid #e2c691; margin:0 auto; background:#fff6e5;}
+.ss-more ul li{ white-space:nowrap; display:inline; float:left; margin-right:12px; height:24px; line-height:24px;}
+
+
+.sitelist{ width:160px; height:429px; background:#e0f3ff;}
+.sitelist ul{ padding:8px 0 0 0;overflow:hidden;}
+.sitelist ul li{ line-height:22px; height:24px;width:120px;text-indent:35px;background-repeat:no-repeat;background-position:12px 2px; }
+.sitelist ul li.icon_weather{background-image:url(/images/nav/icon_weather.gif);}
+.sitelist ul li.icon_calendar{background-image:url(/images/nav/icon_calendar.gif);}
+.sitelist ul li.icon_translate{background-image:url(/images/nav/icon_translate.gif);}
+.sitelist ul li.icon_map{background-image:url(/images/nav/icon_map.gif);}
+.sitelist ul li.icon_airplane{background-image:url(/images/nav/icon_airplane.gif);}
+.sitelist ul li.icon_train{background-image:url(/images/nav/icon_train.gif);}
+.sitelist ul li.icon_phone{background-image:url(/images/nav/icon_phone.gif);}
+.sitelist ul li.icon_tv{background-image:url(/images/nav/icon_tv.gif);}
+.sitelist ul li.icon_radio{background-image:url(/images/nav/icon_radio.gif);}
+.sitelist ul li.icon_fucai{background-image:url(/images/nav/icon_fucai.gif);}
+.sitelist ul li.icon_ticai{background-image:url(/images/nav/icon_ticai.gif);}
+.sitelist ul li.icon_stock{background-image:url(/images/nav/icon_stock.gif);}
+.sitelist ul li.icon_fund{background-image:url(/images/nav/icon_fund.gif);}
+.sitelist ul li.icon_forex{background-image:url(/images/nav/icon_forex.gif);}
+.sitelist ul li.icon_networkspeed{background-image:url(/images/nav/icon_networkspeed.gif);}
+.sitelist ul li.icon_ipquery{background-image:url(/images/nav/icon_ipquery.gif);}
+.sitelist ul li.icon_cleanvirus{background-image:url(/images/nav/icon_cleanvirus.gif);}
+
+.sitelist ul li a:hover{ color:#f00; text-decoration:underline;}

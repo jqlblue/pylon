@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理后台</title>
+{$theme->css('style_admin.php')}
+
+{$theme->script('js_admin_pkg.php')}
+</head>
+<body>
+<body>
+<div id="doc" class="{$curPark}">
+<div id="header">
+  <div id="navilogin"><img src="/images/user/people.gif" align="absmiddle" /> 你好 , <cite>{$staff->logname}</cite> [<a href="index.html?do=logout">退出</a>]</div>
+  <div id="logo"><a href="?do=main">管理后台</a></div>
+  <div id="navi" class="navifont"> <ul>
+           	<li name="modulepark"> <a href="?do=module_list"><span>组件</span></a></li> 
+
+	 </ul>
+ </div>
+ <div id="subnavi" class="navifont">
+ <ul>
+ </ul>
+ </div>
+</div>
+<div id="content">
+<div id="sidebar" class="palepink">
+	{if $curPark=="mainpark"}
+	<h3>运营人员</h3>
+	<ul class="group">
+        <li><span><a href="?do=staff_editpwd" rel="facebox">修改我的密码</a></span></li>
+	<li><span><a href="?do=staff_add" rel="facebox">添加运营人员</a></span></li>
+	</ul>
+	<ul class="group">
+	<li><span><a href="?do=staff_list">运营人员管理</a></span></li>
+	</ul>
+	<h3>上网组件</h3>
+	<ul class="group">
+    <li><span><a href="?do=website_list&pageCnt=60">网站管理</a></span></li>
+ 	<li><span><a href="?do=website_add" rel="facebox">添加网站</a></span></li>
+	</ul>
+	{/if}
+
+	{if $curPark=="userpark"}
+	<h3>用户</h3>
+	<ul class="group">
+	<li><span><a href="?do=go2stage&action=register" target="_blank">用户注册</a></span></li>
+	<li><span><a href="?do=user_list">用户列表</a></span></li>
+	</ul>
+	{/if}
+
+	{if $curPark=="modulepark"}
+	<ul class="group">
+	<li><span><a href="?do=module_add" rel="facebox">添加新组件</a></span></li>
+	</ul>
+	{/if}
+	{if $curPark=="paypark"}
+	<ul class="group">
+	<li><span><a href="?do=order_list">订单查询</a></span></li>
+	</ul>	
+	{/if}
+</div>
+<div id="mainarea">
+<div id="mainname" style="border-left:5px solid #E97622;margin:0 0 10px;text-indent:15px;">menuname</div>
+{include  file="$_autoview"}
+</div>
+</div>
+
+
+<div id="footer">
+&copy; 2007 - 2009 BannerLab Inc.
+</div>
+
+</div>
+<script language="javascript">
+    {literal}$.ns('Apollo.admin', {{/literal}
+         curPark: '{$curPark}',
+	 curAction: '{$action}',
+	 curParam : '{$curParam}'	
+{literal}});
+$(function(){
+	$("#navi li[name="+Apollo.admin.curPark+"]").addClass("curr");
+	$("#sidebar a[href='?do="+Apollo.admin.curAction+"'] ").parents("li").addClass("selected");
+	$("#mainname").text($("#navi li[name="+Apollo.admin.curPark+"]").text()+" » "+$("#sidebar a[href='?do="+Apollo.admin.curAction+"'] ").text());
+	$("#sidebar a[rel=facebox]").click(function(){
+		lastSelected = $("li.selected:first");
+		$('#facebox .close').click(function(){$("li.selected").removeClass("selected");lastSelected.addClass("selected");});
+		$("li.selected").removeClass("selected");
+		$(this).parents("li").addClass("selected");
+	});
+});	
+
+
+</script>
+{/literal}
+
+{include_tpl  file="notice.html"}
+</body>
+</html>

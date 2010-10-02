@@ -1,0 +1,41 @@
+127.0.0.1	localhost
+127.0.1.1	zwj-laptop
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+
+127.0.0.1  uc.union.zlabs.cn
+
+127.0.0.1  zwj.stat.zlabs.cn
+# 60.28.183.12 s-stat.u.17k.com
+#
+# 59.108.227.142   zapollo.cn  admin.zapollo.cn stat.zapollo.cn s-stat.zapollo.cn img.zapollo.cn  cd.zapollo.cn
+
+#61.149.188.195 admin.helper.sgtlib.cn helper.sgtlib.cn
+60.28.183.13 cd.u.17k.com
+127.0.0.1  s-stat.union.zlabs.cn
+127.0.0.1  s-stat.union.zlabs.cn stat.union.zlabs.cn
+127.0.0.1  event.union.zlabs.cn
+127.0.0.1  uc.zlabs.cn
+127.0.0.1  img.union.zlabs.cn master.img.union.zlabs.cn
+127.0.0.1  cd.union.zlabs.cn 
+127.0.0.1  pvw.union.zlabs.cn 
+127.0.0.1  zwj.union.zlabs.cn zwj.admin.union.zlabs.cn
+127.0.0.1  img.union.zlabs.cn cd.union.zlabs.cn
+127.0.0.1  zwj.test.com
+
+
+# POWER BY PSIONIC---SECTION-[testip] BEGIN
+# DATE: 2009-06-21.11:43
+192.168.1.1   my.test.cn
+# POWER BY PSIONIC---SECTION-[testip] END
+# POWER BY PSIONIC---SECTION-[from file] BEGIN
+# DATE: 2009-06-21.11:43
+127.0.0.1  zwj.union.zlabs.cn zwj.admin.union.zlabs.cn
+127.0.0.1  img.union.zlabs.cn cd.union.zlabs.cn
+# POWER BY PSIONIC---SECTION-[from file] END

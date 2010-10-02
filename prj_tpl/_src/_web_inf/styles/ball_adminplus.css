@@ -1,0 +1,27 @@
+/*format: entity-value*/
+
+.lifestatus-normal
+{
+    color:#009f00;
+}
+.lifestatus-overtime
+{
+    color:#ff0000;
+}
+.lifestatus-disuse
+{
+    color:#666666;
+}
+
+.visible-public
+{
+    color:#009f00;
+}
+.visible-protected
+{
+    color:#ff0000;
+}
+.visible-private
+{
+    color:#666666;
+}

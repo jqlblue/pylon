@@ -1,0 +1,3 @@
+use in unix
+ln -s vim_rt  $HOME/.vim
+ln -s _vimrc  $HOME/.vimrc

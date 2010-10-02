@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{$appName} 运营管理中心</title>
+        {$theme->css('style_admin.php')}
+        <meta content="BannerLab Inc." name="Copyright" />
+    </head>
+    <body>
+	{$theme->script('js_admin_pkg.php')}
+<form action="" method="post" id="login"  name="login" target="_top">
+<div style="margin:150px auto;width:800px;">
+        <table class="datatable border-noall" style="width:700px;">
+            <tr>
+                <td style="padding-left:200px;">
+                    <p><img src="/images/logo.jpg"/></p>
+                    <p></p>
+                    <p style="padding:20px 0 5px;font-weight:800;">{$appName} 运营管理中心 </p> 
+                </td>
+            </tr>
+                <td  style="padding:10px 0 0 200px;">
+                    <p></p>
+                    <p id="usernamediv">用户名: <input type="text" name="logname" class="text" tabindex="1" id="logname" value="" />&nbsp;&nbsp;&nbsp;&nbsp; 密　码: <input type="password" name="passwd" class="text" tabindex="2" id="passwd" value="" /></p>
+                    <p class="loginbtn" style="padding:10px 0;">
+                    <input type="hidden" name="loginSubmit" id="loginSubmit" value="true">
+                    <input type="submit" name="sub_login" id="sub_login" value="登 录" style="cursor:pointer;height:20px;" tabindex="3" />
+                    </p>
+                </td>
+                {*<td colspan="1"><div id="afew_finished_task1"></div></td>
+                <td colspan="1"><div id="afew_finished_task2"></div></td>*}
+            </tr>
+        </table>
+
+</div>
+</form>
+
+<div class="footer">
+&copy; 2007 - 2009 BannerLab Inc.
+</div>
+{include_tpl  file="notice.html"}
+</body>
+</html>

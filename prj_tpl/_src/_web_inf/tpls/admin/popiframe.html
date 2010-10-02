@@ -1,0 +1,32 @@
+<iframe src="{$url}" frameborder=0  name="popiframe" id="popiframe" border=0 style="over-flow:hidden;"></iframe>
+{literal}
+<script language="javascript">
+(function()
+{
+docwidth = $(document).width()-50;
+fixiframe = function()	
+{
+   var iframe = document.getElementById("popiframe");
+   if(iframe.contentWindow)
+   {
+	var content_height = iframe.contentWindow.document.body.offsetHeight+50;
+   	var content_width  = iframe.contentWindow.document.body.offsetWidth;
+	if(!iframe.contentWindow.document.body.style.width)
+		content_width = docwidth;
+   	content_height = content_height < 250 ? 250 : content_height; //set minimal height
+	content_width  = content_width  > 810 ? 810 : content_width;//set maximal width
+   	ifr = $("#popiframe");	   
+   	ifr.attr("height",content_height);
+   	ifr.attr("width",content_width);
+   }
+   else
+   {
+	window.clearInterval(fix);
+   }
+}
+
+ fix = window.setInterval("fixiframe()",300);
+})();
+
+</script>
+{/literal}

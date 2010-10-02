@@ -1,0 +1,19 @@
+sys: 
+    empty: !R.empty
+
+
+env:
+    guild: !R.vars 
+        defs : 
+            PRJ_TPL : "${PSIONIC_HOME}/prj_tpl"
+            PRJ_INS : "${HOME}/devspace/prj_ins"
+
+prj: !R.prj
+       res: 
+        - !R.copy
+            src:  "${PRJ_TPL}"
+            dst:  "${PRJ_INS}"
+        - !R.file_tpl
+            
+
+

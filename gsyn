@@ -1,0 +1,4 @@
+#!/bin/bash
+GSYN=/home/z/zlabs_team/gsyn_ex.sh
+CUR_DIR=`readlink /proc/$$/fd/255 | xargs dirname`
+$GSYN  zwj@git.yunyou.cc:~/git/psionic.git $CUR_DIR $1 $2

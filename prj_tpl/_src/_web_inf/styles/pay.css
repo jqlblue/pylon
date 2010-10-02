@@ -1,0 +1,116 @@
+@import url(reset.css);
+a{text-decoration:none}
+a:hover{text-decoration:underline;}
+/*input{ width:132px; height:20px; border:1px solid #c5c5c5;}*/
+.pay-head{ background:url(/images/pay/user_bg_top.jpg); width:100%; height:73px;}
+.paytop,.pay-main,.pay-foot{ width:920px; margin:0 auto;}
+.logo{float:left;}
+.caiyunhome{float:right;text-align:right; height:20px;line-height:20px; width:200px; margin:40px 10px 0 0;}
+.caiyunhome a{color:#767674;}
+.pay-main{ width:920px; margin:20px auto 0px; overflow:hidden;}
+
+.main-left{ width:660px; float:left; overflow:hidden;}
+.pay-type{ background:url(/images/pay/bg_title.jpg); width:660px; height:30px;}
+.result{ line-height:30px; background:url(/images/pay/icon_pay.gif) no-repeat 20px 6px; text-indent:50px; display:block; font-weight:bold; font-size:14px; }
+
+.result-steps ul{ width:545px; overflow:hidden; margin:10px auto;}
+.result-steps ul li{ float:left;}
+.first-step{ background:url(/images/pay/step_1_undone.jpg) no-repeat; width:170px; height:39px;}
+.first-step.done1{ background:url(/images/pay/step_1.jpg)}
+.second-step{ background:url(/images/pay/step_2_undone.jpg) no-repeat; width:243px; height:39px;}
+.second-step.done2{ background:url(/images/pay/step_2.jpg)}
+.three-step{ background:url(/images/pay/step_3_undone.jpg) no-repeat; width:132px; height:39px;}
+.three-step.done3{ background:url(/images/pay/step_3.jpg)}
+
+.explain{ color:#909090; margin-top:25px; width:100%; }
+/*pay2.html*/
+.details{ width:658px; height:28px; background:#fff1a8; border:1px solid #fed06e; margin-top:10px; line-height:28px; text-indent:20px;}
+.result-do{ width:658px; height:110px;background:#e9f6ff;border:1px solid #cadcea; margin-top:10px;}
+.result-do ul{ margin-left:135px; overflow:hidden;}
+.result-do ul li{ margin-top:12px; height:22px; line-height:22px;display:block;}
+.do-word{ text-align:right; float:left; text-align:right; width:120px;}
+.do-input{ float:left; display:inline; margin-left:5px;}
+.do-input input{ width:195px;height:20px; border:1px solid #c5c5c5; }
+
+.result-way{ width:648px; overflow:hidden; border:1px solid #cadcea; background:#e9f6ff; padding:5px; margin-top:10px;}
+.select-number{ float:right; width:506px;overflow:hidden; border:1px solid #cadcea; padding-bottom:20px; background:#fff; color:#989898; }
+.ways{ position:absolute;}
+.ways ul li{ background:url(/images/pay/tab_unchecked.jpg); width:138px; height:33px; margin-bottom:3px; line-height:32px; overflow:hidden; text-align:center; font-size:14px;color:#323232;}
+.ways ul li.way-selected{background:url(/images/pay/tab_checked.jpg); width:141px; color:#000; font-weight:bold;}
+.selected-way{ width:438px; overflow:hidden; text-align:center; margin:0 auto; padding-bottom:20px; border-bottom:1px solid #e7e7e7;padding-top:30px;}
+.selected-way.wayALIPAY{background:url(/images/pay/img_zhifubao.jpg) no-repeat 0px;}
+.selected-way.way99BILL{background:url(/images/pay/img_kuaiqian.jpg) no-repeat 0px;}
+.ALIPAY-declare{ background:url(/images/pay/icon_cue.jpg) no-repeat 34px 0; text-indent:24px; text-align:center; height:18px; line-height:18px; margin-top:20px; color:#f00;}
+.start-select{ width:370px; margin:0 auto; overflow:hidden; padding-top:20px;}
+.number-description{ float:left; width:100px; font-weight:bold; text-align:right; height:20px; *line-height:20px;}
+.number-list{ float:left; width:260px; display:inline; margin-left:5px; overflow:hidden;}
+.number-list ul li{ margin-bottom:10px;}
+.number-color{ color:#000; font-weight:bold; }
+.pay-next2{ margin-top:10px; width:100%; text-align:center; overflow:hidden;}
+/*pay2.html*/
+/*history.html*/
+.his-con{ background:url(/images/pay/icon_histroy.gif) no-repeat 20px 6px;}
+.consume,.consume-rec{ color:#414141; font-weight:bold;font-size:14px; margin-top:40px; text-indent:20px;}
+.consume-select{ margin-top:10px; text-indent:20px; overflow:hidden; color:#414141; width:100%; clear:both; margin-top:40px;}
+.my-select{ width:450px; float:left; height:40px; line-height:40px;}
+.my-select select{ width:200px;}
+.select-ok{ float:left;}
+.consume-list{ padding-left:20px; margin-top:20px;}
+.consume-list table{color:#515151; border-collapse:collapse;}
+.consume-list table td{ border:1px solid #b5d1e2; height:20px; line-height:20px;}
+.consume-list table thead td { background:#e6f2f9; text-align:center; font-weight:bold;}
+.consume-list table tbody td{ text-indent:10px;}
+.pages{ clear:both; margin:10px 0;text-align:right;color:#515151; }
+.pages em, .pages a, .pages strong{ text-decoration:none; margin-left:5px; padding:2px 5px; border:1px solid #b5d1e2; }
+.pages a:hover{ text-decoration:none; border:1px solid #09C; background:#e6f2f9; }
+.pages strong{ border:none; font-weight:700; }
+.pages span{font-weight:bold;color:#f00;}
+/*history.html end*/
+/*ok*/
+.payfinished{ width:658px; background:#f4f4f4; border:1px solid #e2e2e2; height:220px;}
+
+.status-succ{ width:49px; height:220px; background:url(/images/pay/button_ok.jpg) no-repeat 0 85px; margin:0 20px 0 175px; float:left; display:inline;}
+.status-faile{ width:49px; height:220px; background:url(/images/pay/button_errow.jpg) no-repeat 0 85px; margin:0 20px 0 175px; float:left; display:inline;}
+.status-dec{ font-size:14px; font-weight:bold; float:left; height:100px; line-height:20px;width:50%; margin-top:100px;}
+/*ok end*/
+.games{ width:100%; overflow:hidden; margin-top:10px;}
+.games ul li{ width:50%; height:110px; float:left;}
+.games ul li span{ display:block; float:left;}
+.games ul li span.game-radio{ width:30%; padding-top:45px; height:20px;text-align:center;}
+.games ul li span.game-img{ width:70%; height:110px; text-align:left;}
+.pay-next{ margin-top:60px; width:100%; text-align:center; overflow:hidden;}
+
+.main-right{ width:230px; float:right; overflow:hidden;}
+.user-login{ background:url(/images/pay/bg_login.jpg) no-repeat; height:160px; width:230px;}
+
+.login-account{ height:28px; line-height:28px; width:100%;}
+.login{ font-weight:bold; color:#735231; text-indent:12px; float:left; width:160px;}
+/*login*/
+.login-box{ text-align:center; width:100%; overflow:hidden;}
+.box-account,.box-psd{ margin-top:10px; width:100%; height:20px;}
+.box-account span,.box-psd span{height:20px; line-height:20px; display:inline; float:left; width:36px; margin-left:30px;}
+.box-account span.box-input,.box-psd span.box-input{ margin:0px; width:132px;}
+.box-account input,.box-psd  input{ width:132px; height:20px; border:1px solid #c5c5c5;}
+/*login*/
+/*logout*/
+.logout{ float:left;}
+.logout a{ color:#00aeef;}
+.account-infor{width:100%; color:#595959; padding-top:20px;overflow:hidden;}
+.infor-words,.userinfor{ width:120px; float:left; text-indent:10px; margin-top:20px;  height:18px;line-height:20px;}
+.infor-words{ width:100px; text-align:right;}
+/*logout end*/
+.forgetpsd{ width:100%;margin-top:12px;_margin-top:6px;  text-align:left; height:14px;line-height:14px; text-indent:66px;}
+.forgetpsd a{ color:blue}
+.login-sign{ text-indent:24px; width:100%; padding-top:8px; height:24px; line-height:24px;}
+
+.pay-type-list{ width:228px; overflow:hidden; border:1px solid #c8dfed; margin-top:10px; padding:8px 0 25px 0;}
+.pay-type-list ul{  text-align:center; width:178px; overflow:hidden; margin:0 auto;}
+.pay-type-list ul li{ margin-top:17px; background:url(/images/pay/button.jpg); width:176px; height:39px; line-height:38px; font-weight:bold; font-size:14px; cursor:pointer;}
+.pay-type-list ul li span{ height:38px; width:176px; display:block; text-indent:10px; background-repeat:no-repeat; background-position:40px 10px; color:#495962}
+/*.pay-type-list ul li span a{ color:#495962}
+.pay-type-list ul li span a:hover{ text-decoration:none;}*/
+.pay-type-list ul li span.game-result{ background-image:url(/images/pay/icon_pay.gif); }
+.pay-type-list ul li span.history-consume{ background-image:url(/images/pay/icon_histroy.gif)}
+.pay-type-list ul li span.result-record{  background-image:url(/images/pay/icon_detail.gif)}
+
+.pay-foot{ margin-top:50px; border-top:1px solid #cecece; padding-top:10px;padding-bottom:40px; text-align:center; line-height:18px; overflow:hidden; }

@@ -1,0 +1,17 @@
+$tcs[]="XmvcTest";
+$tcs[]="EventMachineTC2";
+$tcs[]="DBCTestCase";
+$tcs[]="TreeTest";
+$tcs[]="SimpleWebSvcTC";
+$tcs[]="StatusMachineTest";
+$tcs[]="UtilityTest";
+$tcs[]="SQLConstructTest";
+//$tcs[]="TransTc";
+$tcs[]="DBExecuterTC";
+//$tcs[]="ObjUpdateTC";
+$tcs[]="EntityTest";
+$tcs[]="DaoImpTest";
+$tcs[]="FrameWorkTestCase";
+$tcs[]="CacheProxyTC";
+$tcs[]="CacheSvcTest";
+$tcs[]="IDGenterSvcTC";

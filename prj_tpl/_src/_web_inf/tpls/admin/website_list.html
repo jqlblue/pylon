@@ -1,0 +1,18 @@
+{utable obj=$table table_id='utable_website' table_class='datatable'}
+ {row tr_id='c:return $row[id];' }
+ {col th_html='排位值'  td_style='width:50px;'  td_name='rank' }
+ {col th_html='域名'   td_style='width:150px;'  td_name='domain }
+ {col th_html='网站名'      td_name='name' }
+ {col th_html='简介'    td_style='width:50px;'  td_name='desc'}
+ {col th_html='搜索KEY' td_style='width:350px;' td_name='searchkey_str' td_html='c:return "<pre>".$row[searchkey_str]."</pre>";'  }
+ {col th_html='角色'       td_name='role_str' }
+ {col th_html='分类'       td_name='tags_str' }
+ {col th_html='操作'       td_name='edit'  td_html='c:return "<a href=\'index.html?do=website_edit&id=".$row[id]."\' rel=\'facebox\'>修改</a> <a href=\'index.html?do=website_del&id=".$row[id]."\' onclick=\'return confirm(\\\"确定要删除?\\\");\'>删除</a>";' }
+ {/utable}
+ {literal}
+ <script>
+     javascript:(function(){var D=document; F(D.body); function F(n){var u,r,c,x; if(n.nodeType==3){ u=n.data.search(/\S{10}/); if(u>=0) { r=n.splitText(u+10); n.parentNode.insertBefore(D.createElement("WBR"),r); } }else if(n.tagName!="STYLE" && n.tagName!="SCRIPT"){for (c=0;x=n.childNodes[c];++c){F(x);}} } })();
+ </script>
+ {/literal}
+
+{include_tpl  file="page_admin.html"}

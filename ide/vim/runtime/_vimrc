@@ -1,0 +1,82 @@
+syntax on
+set smartindent
+if has("vms")
+      set nobackup	
+else	  
+    set backup
+endif
+set ruler
+set showcmd
+filetype plugin indent on
+set tabstop=4
+set expandtab
+set shiftwidth=4
+set foldcolumn=2
+set incsearch
+set foldmethod=marker
+set backupdir=~/backup/vim
+set backupext=.bak
+set showmatch
+
+map <F3> <Esc>:wnext <Enter>
+map <F4> <Esc>:wprevious <Enter>
+map <F2> <Esc>:w <Enter> <Esc>:make <Enter>
+map vi' <Esc>?'<CR>lv/'<CR>h
+map vi" <Esc>?"<CR>lv/"<CR>h
+map va' <Esc>?'<CR>v/'<CR>
+map va" <Esc>?"<CR>v/"<CR>
+map vix <Esc>?><CR>lv/<<CR>h
+map vi= <ESC>?\s\+\S\+\s*=\s*\S\+<CR>lv/=<CR>/\S<CR>/[\s<>\n]<CR>h
+map vi/ <Esc>?\/<CR>l<Esc>v/\/<CR>h
+map vt) <ESC>v/)<CR>h
+map vt' <ESC>v/'<CR>h
+map vt" <ESC>v/"<CR>h
+map vt; <ESC>v/;<CR>h
+map vt, <ESC>v/,<CR>h
+map vt} <ESC>v/}<CR>h
+
+noremap <silent> <F11> :cal VimCommanderToggle()<CR>
+noremap \cmd :cal VimCommanderToggle()<CR>
+
+
+
+set csto=0
+"set aw
+
+
+"let g:vimsh_prompt_override = 1               
+"let g:vimsh_split_open      = 0             
+"let g:vimsh_sh              = '/bin/bash'       
+"nmap \shl :source ~/.vim/plugin/vimsh.vim<CR>
+
+
+noremap \dc <Esc>:Dox<CR>
+noremap \dd <Esc>:DoxUndoc<CR>
+noremap \da <Esc>:DoxAuthor<CR>
+
+if v:version >= 700
+    :nmap <C-w>p :tabprevious<cr>
+"    :nmap <C-w>]:tabnext<cr>
+    :map <C-w>p :tabprevious<cr>
+"    :map <C-w>n :tabnext<cr>
+"    :imap <C-w>p <ESC>:tabprevious<cr>i
+"    :imap <C-w>x <ESC>:tabnext<cr>i
+    :nmap <C-w>t :tabnew<cr>
+    :imap <C-w>t <ESC>:tabnew<cr>
+endif
+
+set helplang=en
+
+" ============= PHP FUNCTION BEGIN ========== 
+set dictionary-=~/.vim/doc/funclist.txt dictionary+=~/.vim/doc/funclist.txt
+set complete-=k complete+=k
+function! InsertTabWrapper()
+    let col=col('.')-1
+    if !col || getline('.')[col-1] !~ '\k'
+        return "\<TAB>"
+    else
+        return "\<C-N>"
+    endif
+endfunction
+inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
+" ============= PHP FUNCTION END ========== 
