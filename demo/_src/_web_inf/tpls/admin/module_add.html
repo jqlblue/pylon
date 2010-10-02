@@ -1,0 +1,82 @@
+<form id="module_add" action="?do={$_action}" method="post" ajaxmode="true" name="module_add"  enctype="multipart/form-data">
+<table class="datatable border-noall" style="width:500px;">
+{if $module.key}
+<tr>
+<th colspan=2>必填项<input type="hidden" name="key" id="key" value="{$module.key}"></th>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">组件KEY</td>
+<td><strong>{$module.key}</strong></td>
+</tr>
+{else}
+<tr>
+<th colspan=2>必填项</th>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">组件KEY</td>
+<td> <input type="text" name="key" id="key" class="text" maxlength="30" value="{$module.key}"><br/>
+组件KEY只能由英文字母组成(不能有空格及非英文字符) <br/>在平台中具有唯一性 且不更改
+</td>
+</tr>
+{/if}
+<tr class="border-top">
+<td width="150" style="text-align:right;">名称</td>
+<td> <input type="text" name="name" id="name" class="text" maxlength="30" value="{$module.name}"></td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">开发者</td>
+<td> <input type="text" name="developer" id="developer" class="text" maxlength="80" value="{$module.developer}"></td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">版本号</td>
+<td> <input type="text" name="version" id="version" class="text" maxlength="80" value="{if $module.version}{$module.version}{else}00.00.01{/if}"> 格式：主版本.次版本.修正号</td>
+</tr>
+{if !$module.key}
+<tr>
+<td width="150" style="text-align:right;">类型</td>
+<td><select name="mtype">
+{foreach key=mtypename item=mtypeval from=$mtypes}
+	<option value="{$mtypeval}">{$mtypename}</option>
+{/foreach}
+</select>
+</td>
+</tr>
+{/if}
+<tr>
+<th colspan=2>基本项</th>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">简介</td>
+<td> <textarea style="width:150px;height:50px;" name="desc" id="desc">{$module.desc}</textarea></td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">图标(Icon)</td>
+<td> <input id="icon" type="file" name="icon" style="width:150px;height:20px;"></td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">文件包(zip)</td>
+<td> <input id="pkg" type="file" name="pkg" style="width:150px;height:20px;"></td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">自定义标签</td>
+<td> <input type="text" name="tags" id="tags"  class="text" value="{$module.tags}"></td>
+</tr>
+<tr>
+<th colspan=2>组件相关</th>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">所依赖组件</td>
+<td> <input type="text" name="depend" id="depend"  class="text" readonly value="{$module.depend}"> <br/>挑选形式再议</td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">相关推荐组件</td>
+<td> <input type="text" name="recommend" id="recommend"  class="text" readonly value="{$module.recommend}"> <br/>挑选形式再议</td>
+</tr>
+<tr>
+<td colspan=2 style="text-align:center;"><input type="hidden" name="submit_{$_action}" value="true"><input type="submit" name="sub_{$_action}" id="sub_{$_action}" value="Done"></th>
+</tr>
+</table>
+</form>
+<script>
+Apollo.common.formCheck();
+</script>

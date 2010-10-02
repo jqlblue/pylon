@@ -1,0 +1,14 @@
+<table class="datatable" style=" width:300px; border:1px solid #ccc; margin:0 auto; margin-top:20px;" >
+<tr ><td>处理人姓名</td></tr>
+<tr><td><input type="text" name="dealer" id=dealer></td></tr>
+<tr><td><button id="submit">确定</button></td></tr>
+</table>
+
+<script>
+var orderid = "{$orderid}",channel = "{$channel}";
+{literal}
+$('#submit').click(function(){
+	var dealer = $('#dealer').val();
+	 location="?do=order_deal&orderid="+orderid+"&channel="+channel+"&dealer="+dealer;});
+</script>
+{/literal}

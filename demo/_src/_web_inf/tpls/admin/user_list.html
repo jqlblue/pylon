@@ -1,0 +1,18 @@
+
+{$filter->show()}
+ 
+
+今日注册人数：<span>{$todayNum}个</span>, 历史最高记录：<span>{$maxNum}个 于{$maxDate}</span>&nbsp; &nbsp;&nbsp; <a href="?do=user_charts">柱状图查看</a>
+
+
+{utable obj=$table table_id='utable_user' table_class='datatable'}
+ {row tr_id='c:return $row[id];' }
+ {col th_html='id'       td_name='id' }
+ {col th_html='用户'       td_name='username' }
+ {col th_html='加入时间'       td_name='createtime' }
+ {col th_html='Email'       td_name='email' }
+ {col th_html='激活状态'       td_name='status' }
+ {/utable}
+
+{include_tpl  file="page_admin.html"}
+

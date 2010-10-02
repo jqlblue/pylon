@@ -1,0 +1,33 @@
+<div class="pay-type"><span class="result his-con">历史消费</span></div>
+<div class="consume">消费查询（按消费日期查询）</div>
+
+<div class="consume-select">
+
+	<div class="my-select">我要查： <select name="selectdate" id="selectdate" ><option value='3'>最近三日</option><option value='7'>最近一星期</option><option value='30'>最近一个月</option><option value='183'>最近半年</option><option value='100000'>所有</option></select> 的消费记录</div>
+	<!--<input type="text" name="begintime" value="">至<input type="text" name="endtime" value="">-->
+	<div class="select-ok"><img src="images/pay/button_find.jpg" alt="查询" id="ex_submit" /></div>
+</div>
+<script>
+var val = {$day};
+$('#selectdate').val(val);
+</script>
+<div class="consume-rec">消费记录：</div>
+<div class="consume-list"><table width="640"  >		
+		<thead><tr><td width="79">订单号</td><td width="154">时间</td>		
+		<td width="180">商品名</td>
+		<td width="69">数量</td>
+		<td width="102">消费金额<span style="font-weight:normal;">（元）</span></td>
+		</tr></thead>
+		<tbody>{foreach from=$data item=val}
+			<tr><td>{$val.id}</td><td>{$val.paytime}</td><td>{$val.name}</td><td>{$val.num}</td><td>{$val.rmb}</td></tr>
+			{/foreach}
+		</tbody>
+  </table>
+</div>
+{include_tpl  file="page_smt.html"}
+{literal}
+
+<script>
+$('#ex_submit').css('cursor','pointer').click(function(){location="?do=list_expense&sl_date="+$('#selectdate').val();});
+</script>
+{/literal}		

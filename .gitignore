@@ -10,5 +10,4 @@ cscope*
 smarty
 .*tmp
 prj.conf
-demo/_*
 tmp*

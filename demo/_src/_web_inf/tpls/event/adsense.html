@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html>
+<head> 
+<title>云游</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<link rel="stylesheet" rev="stylesheet" href="styles/reset.css" type="text/css">
+{literal}
+<style>
+a,a:hover,a:visited {color:#333333;}
+body {font-family:Arial,Sans-serif, "\5b8b\4f53";cursor:default;overflow:hidden;background-color:#F3F3F3;}
+#doc {width:185px;height:250px;margin:0 auto;position:relative;clear:both;}
+
+.tuangou {width:155px;height:220px;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;margin:0 auto;padding:5px 10px;position:relative;}
+.tuangou .desc {font-size:14px;margin-bottom:5px;line-height:20px;height:60px;text-overflow:ellipsis;overflow:hidden;}
+.tuangou .sold-total {width:153px;background-color:#fff;border:1px solid #ededed;text-align:center;height:20px;line-height:20px;margin-bottom:5px;}
+.tuangou .sold-total span {color:#C62727;font-size:16px;margin-right:5px;font-weight:bolder;}
+.tuangou .image {width:153px;height:95px;overflow:hidden;margin-bottom:5px;}
+.tuangou .image a {display:block;width:148px;height:95px;}
+.tuangou .image img {width:153px;}
+.tuangou .price {width:153px;background-color:#fff;border:1px solid #ededed;text-align:center;}
+.tuangou .price p {height:20px;line-height:20px;}
+.tuangou .price p span,.tuangou .price p strike {margin-left:5px;}
+.tuangou .price p span{color:#C62727;font-size:16px;}
+
+.taobao {margin:0 auto;position:relative;height:200px;}
+#chongzhi {position:absolute;left:-8px;}
+</style>
+{/literal}
+</head>
+<body>
+<div id="doc">
+<p style="height:20px;line-height:20px;text-align:center;"><a href="http://www.yunyou.cc/viewthread.php?tid=7656" target="_blank" style="color:red;">从云游充手机话费说明</a></p>
+<div class="taobao">
+<iframe id="chongzhi" name="chongzhi" src="http://chongzhi.huoban.taobao.com/?pid=mm_10007922_0_0" frameborder="0"  allowTransparency="true" scrolling="no" style="width:190px;height:200px;"></iframe>
+</div>
+<p style="height:20px;line-height:20px;text-align:center;"><a href="http://www.yunyou.cc/viewthread.php?tid=6743" target="_blank" style="color:green;">云游午餐小广告联系方式</p>
+{if $meituanData}
+<div class="tuangou" title="{$meituanData.title}">
+<p class="desc"><a href="{$meituanData.href}" target="_blank">{$meituanData.title}</a></p>
+<div class="sold-total">
+<a href="{$meituanData.href}" target="_blank"><span>{$meituanData.sold}</span>人购买&nbsp;&nbsp;&nbsp;&nbsp;{$meituanData.percent}</a>
+</div>
+<div class="image">
+<a href="{$meituanData.href}" target="_blank">
+<img src="{$meituanData.pic}"/>
+</a>
+</div>
+<div class="price">
+<a href="{$meituanData.href}" target="_blank">
+<p>现价 <span>¥{$meituanData.price}</span>&nbsp;&nbsp;&nbsp;&nbsp;原价 <strike>¥{$meituanData.value}</strike></p>
+</a>
+</div>
+</div>
+{/if}
+</div>
+</body>
+</html>

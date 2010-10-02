@@ -1,0 +1,77 @@
+{literal}
+<style>
+#modulelist dt {
+    left:10px;
+    margin-right:10px;
+    padding:0;
+    position:absolute;
+}
+#modulelist dd {
+	border-bottom:1px solid #D8DFEA;
+	margin:0 0 10px 60px;
+	padding-bottom:5px;
+	width:630px;
+	position:relative;
+}
+#modulelist dd h2 {
+	color:#3B5888;
+}
+#modulelist dd .app-key{
+	float:right;
+	height:24px;
+	line-height:24px;
+	padding:3px 5px;
+	background:#FFF6EE none repeat scroll 0 0;
+	border:1px solid #D8DFEA;;
+}
+#modulelist dd .app-version{
+	position:absolute;
+	right:0;bottom:0;
+	height:24px;
+	line-height:24px;
+	padding:3px 5px;
+}
+#modulelist dd .app-author {
+	color:#808080;
+	margin:2px 0 5px;
+}
+#modulelist dd .app-describe {
+	height:25px;
+	line-height:25px;
+	padding-right:10px;
+}
+#modulelist dd .app-tags {
+	height:25px;
+	line-height:25px;
+	padding:3px 5px;
+}
+#modulelist dd .app-tags span{
+	background:#979DDF none repeat scroll 0 0;
+	color:#FFFFFF;
+	padding:3px;
+}
+</style>
+{/literal}
+<div id="modulelist" style="width:650px;margin-left:20px;margin-top:10px;margin-right:10px;">
+<dl>
+{foreach item=module from=$modules}
+<dt>
+<a><img width="60" src="{$module.icon_url}"/></a>
+</dt>						
+<dd>
+	<h2> {$module.name}</h2>
+	<div class="app-key"><a title="组件KEY">{$module.mkey}</a> <a title="类型" style="color:#cc0000;">[{$mtypenames[$module.mtype]}]</a><a href="index.html?do=module_more&key={$module.mkey}" rel="facebox">[历史版本]</a> |  {$module.lifestatus}</div>
+    <div class="app-version">组件版本:{$module.version} <a href="index.html?do=module_edit&key={$module.mkey}" rel="facebox">[修改]</a>
+        <a href="{$module.pkg_url}" target="_blank">[down]</a> </div>	
+	<p class="app-author"><span>开发者: </span>{$module.developer}</p>
+	<p class="app-describe">{$module.mdesc}</p>
+	<p class="app-tags">
+	{foreach item=tag from=$module.tags}
+	<span>{$tag}</span>
+	{/foreach}
+	</p>
+</dd>
+{/foreach}
+</dl>
+{include_tpl  file="page_admin.html"}
+</div>

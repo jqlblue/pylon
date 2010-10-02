@@ -1,0 +1,136 @@
+/* =0 reset & pstyle
+ *
+ * */
+@import url('reset.css');
+@import url('pstyle.css');
+
+/* =1 Global
+ *
+ * */
+body {
+ font-family:Arial,Helvetica,sans-serif;
+ font-size: 12px;
+ font-size-adjust:none;
+ font-style:normal;
+ font-variant:normal;
+ font-weight:normal;
+ line-height:162%;
+ color: #666;
+ padding:0;
+ margin:0;
+ cursor: default;
+}
+a {
+ text-decoration: none;
+ cursor:pointer;
+}
+a:link {
+    color:#336699;
+    text-decoration:none;
+}
+a:visited {
+    color:#666699;
+    text-decoration:none;
+}
+a:hover {
+    background:#003399 none repeat scroll 0 0;
+    color:#FFFFFF;
+    text-decoration:none;
+}
+ul li { list-style: none; }
+em, cite, strong, th {
+    font-style:normal;
+    text-align:left;
+}
+label {cursor:pointer;}
+input.text{
+    background:#F2FCF1;border:1px solid #dddddd;height:19px;
+}
+input.date{
+    background:#F2FCF1;border:1px solid #dddddd;height:19px;width:85px;cursor:pointer;
+}
+h1 {
+    color:#494949;
+    font-size:25px;
+    font-weight:700;
+    line-height:1.1em;
+    margin:0;
+    padding:5px 0 15px;
+}
+h2 {
+    -x-system-font:none;
+    color:#006600;
+    font-family:normal Arial,Helvetica,sans-serif;
+    font-size:14px;
+    font-size-adjust:none;
+    font-stretch:normal;
+    font-style:normal;
+    font-variant:normal;
+    font-weight:normal;
+    line-height:150%;
+    margin:0 0 12px;
+}
+.undis{display:none;}
+.dis{display:block;}
+.af{
+    color:#006600;
+    font-size:14px;
+    line-height:120%;
+}
+.pl {
+    -x-system-font:none;
+    color:#666666;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:12px;
+    font-size-adjust:none;
+    font-stretch:normal;
+    font-style:normal;
+    font-variant:normal;
+    font-weight:normal;
+    line-height:150%;
+}
+
+/* =2 layout 
+ *
+ * */
+/*document*/
+#doc {
+    background:#FFFFFF none repeat scroll 0 0;
+    margin:0 auto;
+    overflow:hidden;
+    padding:8px 15px;
+    width:964px;
+}
+#header {
+    margin:7px 0;
+    position:relative;
+    clear:both;
+}
+#header #logo {
+    padding-top:5px;
+    height: 50px;
+}
+#header #logo a {
+    background:transparent url(/images/logo.gif) no-repeat scroll 0 0;
+    display:block;
+    height:45px;
+    overflow:hidden;
+    text-align:left;
+    text-indent:-3000px;
+    width:200px;
+}
+
+#tablem {
+    float:left;
+    margin:0 -270px 0 0;
+    width:100%;
+}
+#in_tablem {
+    margin:0 270px 50px 0;
+    padding:0 65px 0 0;
+}
+#tablerm {
+    float:right;
+    overflow:hidden;
+    width:270px;
+}

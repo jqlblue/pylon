@@ -1,0 +1,29 @@
+@import url(reset.css);
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+body{background:#d2f9fe;}
+.qq-wrap{ width:1003px; margin:0 auto; overflow:hidden;}
+
+.qq-head{ background:url(/images/games/qq/bg_top.jpg) no-repeat; width:1003px; height:301px; position:relative;}
+.qq-logo{ position:absolute; width:201px; height:48px; top:0;left:0;}
+.qq-home{ width:190px;height:20px;line-height:20px;position:absolute;left:201px;top:10px;color:#37669b;}
+.qq-home a{color:#37669b;}
+.qq-360ok{ position:absolute; width:208px; height:66px; background:url(/images/games/qq/360approve.jpg) no-repeat; top:8px;right:8px;}
+.qq-windmill{position:absolute; top:66px;left:98px; width:61px; height:61px;}
+.qq-ad{ position:absolute; width:362px; height:56px; background:url(/images/games/qq/title.gif) no-repeat; top:228px;left:275px;}
+.qq-download{position:absolute; width:203px; height:69px;  top:222px;left:661px;}
+
+.qq-contain{ width:1003px; overflow:hidden; position:relative;}
+.qq-infor{ width:1003px; background:url(/images/games/qq/bg_buttom.jpg) no-repeat; height:406px;position:relative;}
+.qq-content{ background:url(/images/games/qq/contents.gif); width:505px; height:134px; left:107px; top:59px; position:absolute;}
+.qq-shareword{ width:160px; height:20px;line-height:20px; top:70px;right:116px;position:absolute;overflow:hidden;}
+.qq-share{ width:92px; height:93px; position:absolute; top:108px; left:730px;}
+.qq-shareinfor{ width:224px; height:20px; position:absolute; top:152px; left:664px;background:url(/images/games/qq/gifttext.gif);}
+.qq-honour{ width:391px; height:96px; background:url(/images/games/qq/award.jpg); top:246px; left:150px; position:absolute;}
+.qq-update{ background:url(/images/games/qq/update.gif); width:91px; height:89px; position:absolute; top:306px; left:51px;}
+
+
+.qq-foot{ width:620px; position:relative; height:60px; background:url(/images/games/qq/small_logo.gif) no-repeat 52px 0px; color:#5c5c5c;}
+.qq-comname{ float:right; width:330px; text-align:right; height:26px; line-height:26px;}
+.qq-paybbs{ float:right;height:26px; line-height:26px;}
+.qq-paybbs a{color:#5c5c5c;}

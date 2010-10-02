@@ -1,0 +1,61 @@
+{literal}
+<script type="text/javascript">
+function DrawImage(ImgD,parentid){
+	var delimitW = 187;
+	var delimitH = 67;
+	var image=new Image();
+   image.src=ImgD.src;
+   var ph=$(ImgD).parents(parentid).css('height');
+   if(image.width>0 && image.height>0){
+		if(image.width/image.height>= delimitW/delimitH){
+			 if(image.width>delimitW){
+				 ImgD.width=delimitW;
+				 ImgD.height=(image.height*delimitW)/image.width;
+			 }else{
+				 ImgD.width=image.width;
+				 ImgD.height=image.height;
+			 }		
+		}else{
+			 if(image.height>delimitH){
+				 ImgD.height=delimitH;
+				 ImgD.width=(image.width*delimitH)/image.height;
+			 }else{
+				 ImgD.width=image.width;
+				 ImgD.height=image.height;
+			 }
+		}
+		$(ImgD).css('padding-top',(parseInt(ph)-ImgD.height)/2+'px');
+	}
+}
+
+</script>
+{/literal}	
+<div class="pay-type"><span class="result">充值</span></div>
+<div class="result-steps"><ul><li class="first-step done1"></li><li class="second-step"></li><li class="three-step"></li></ul></div>
+<div class="explain">>> 选择您要充值的游戏</div>				
+<div class="games">
+	<ul>
+	{foreach from=$games key=k item=v}
+	<li tag='{$k}'><span class="game-radio"><input type="radio" name="games"  value="{$v.key}" /></span><span class="game-img"><img src="images/pay/{$v.key}.jpg" onload="javascript:DrawImage(this,'.game-img');" alt="{$v.name}" /></span></li>
+	{/foreach}
+	{section name=loop loop=$upcominggames}
+	<li><span class="game-radio"><input type="radio" name="games" value="null" disabled="disabled"/></span><span class="game-img"><label><img src="images/pay/game_disable.jpg" alt="即将推出" onload="javascript:DrawImage(this,'.game-img');"/></label></span></li>
+	{/section} 
+	</ul>
+</div>						
+<div class="pay-next"><img src="images/pay/button_next.jpg" alt="下一步" id="next"/></div>
+{literal}
+<script>
+$(function(){
+	$('input[name=games]:first').attr('checked',true);
+	$('.games li[tag]').each(function(i){$(this).click(function(){$('.games input').eq(i).attr('checked',true);})});
+	$('#next').css('cursor','pointer').click(function(){
+		var gamekey = $("input[name=games]:checked").val();
+		if(gamekey)
+			location = '?do=payment_order&prj='+gamekey;
+		else
+			alert("请选择您要充值的游戏！");
+	});
+});	
+</script>
+{/literal}

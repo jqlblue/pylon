@@ -1,0 +1,29 @@
+{if !$_uargs}
+{assign var="_uargs" value="do=$_action"}
+{/if}
+<div class="pages"> 
+    {if $pageCtrl.haveleft }
+    <a title="首页"   href="?pageno=1&{$_uargs}"  rel="{$_rel}">|&lt;</a>
+    <a title="上一页" href="?pageno={$pageCtrl.prepage}&{$_uargs}" rel="{$_rel}" >&lt;&lt;</a>
+    {/if}
+    {foreach key=key item=item from=$pageCtrl.lablelist}
+    {if $pageCtrl.prepage+1==$item}
+    <strong>{$item}</strong>
+    {else}
+    <a href="?pageno={$item}&{$_uargs}" rel="{$_rel}">{$item}</a>
+    {/if}
+    {/foreach}
+
+    {if $pageCtrl.haveright }
+    <a title="下一页" href="?pageno={$pageCtrl.nextpage}&{$_uargs}" rel="{$_rel}">&gt;&gt;</a>
+    <a title="未页"   href="?pageno={$pageCtrl.total}&{$_uargs}"  rel="{$_rel}">&gt;|</a>
+    {/if}
+<span>{$pageCtrl.prepage+1}/{$pageCtrl.total}</span>
+</div>
+{if $_rel=="facebox"}
+{literal}
+<script>
+        $(".pages a[rel*=facebox]").facebox() ;
+</script>
+{/literal}
+{/if}

@@ -1,0 +1,28 @@
+{foreach item=module from=$modules}
+<div>
+<table class="datatable border-noall" style="width:500px;">
+<tr>
+<th colspan=2 style="text-align:right;padding-right:10px;">{$module.name} (version:{$module.version}) |  {$module.lifestatus_txt}</th>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">开发者</td>
+<td> {$module.developer}</td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">简介</td>
+<td> {$module.desc}</td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">图标(Icon)</td>
+<td><img width="60" src="{$module.icon_url}"/></td>
+</tr>
+<tr>
+<td width="150" style="text-align:right;">文件包(zip)</td>
+<td><a href="{$module.pkg_url}" target="_blank">[down]</a></td>
+</tr>
+{if $module.lifestatus!="disuse"}
+<tr><td colspan="2"><a href="index.html?do=modulemore_del&key={$module.mkey}&version={$module.version}" onclick="return confirm('确定要删除么?');">删除</a></td></tr>
+{/if}
+</table>
+</div>
+{/foreach}

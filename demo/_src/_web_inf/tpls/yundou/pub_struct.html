@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>彩云充值中心</title>
+<link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+{$theme->css('pay.css')}
+{$theme->script('jquery-1.3.2.min.js')}
+</head>
+<body>
+	<div class="pay-head">
+		<div class="paytop">
+		<div class="logo"><img src="images/pay/pay_logo.jpg" alt="支付logo" /></div><div class="caiyunhome"><a href="http://www.caiyun.cc" target="_blank">彩云主页</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://bbs.caiyun.cc" target="_blank">产品论坛</a></div>
+		</div>
+	</div>
+	<div class="pay-main">
+		<div class="main-left">
+		{include  file="$_autoview"}
+		</div>
+		<div class="main-right">
+			<!--{include_tpl  file="login.html"}-->
+			<iframe src="?do=login"  width="230" height="160" frameborder='0'></iframe>
+			<div class="pay-type-list" id="paytypelist">
+				<ul>
+				<li title="游戏充值"><span class="game-result">游戏充值</span></li>
+				<li title="充值记录"><span class="result-record">充值记录</span></li>
+				<li title="历史消费"><span class="history-consume">历史消费</span></li>				
+				</ul>
+			</div>
+			
+			<script>
+			{literal}
+			$('#paytypelist li:first').click(function(){location = '?do=payment'});
+			{/literal}			
+				{if !$user}
+			{literal}
+			//$('#paytypelist li:gt(0)').click(function(){ $('iframe #logname').focus();alert('请登录帐户！');});
+			$('#paytypelist li:gt(0)').hide();
+			{/literal}
+	
+				{else}
+			{literal}
+			$('#paytypelist li:eq(1)').click(function(){ location = '?do=list_payment'});
+			$('#paytypelist li:eq(2)').click(function(){ location = '?do=list_expense'});
+			{/literal}
+				{/if}
+			{literal}
+			</script>
+			{/literal}
+		</div>
+	</div>
+	<div class="pay-foot">
+		Copyright © 宸康科技（北京）有限公司 京ICP备09097202号
+	</div>
+</body>
+</html>
