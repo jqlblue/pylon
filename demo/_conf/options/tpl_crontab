@@ -1,0 +1,6 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:
+*/5  * * * *     root   echo "hello"  >>/tmp/crontab.log
+5    3 * * *     root   ntpdate 210.72.145.44 && /sbin/hwclock -w
+
+1 5 * * *     root /home/z/bin/${APP_ALIAS}_${OWNER}/ball_clear.sh  >> /tmp/${APP_ALIAS}_clear_db_${OWNER}.log 2>&1
