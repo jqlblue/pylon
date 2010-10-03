@@ -1,4 +1,4 @@
-import types , re , os , string ,  getopt , pickle ,res ,yaml 
+import types , re , os , string ,  getopt , pickle ,res ,yaml , os_env
 from  cgi import *
 
 
@@ -32,6 +32,9 @@ def build_prj(conf_path):
     prj.reg_env(conf_data['env'])
     prj.reg_sys(conf_data['sys'])
     return prj 
+
+
+
 
 if __name__ == '__main__':
     sys.path.append(os.path.dirname(os.path.realpath(__file__)))
@@ -68,5 +71,8 @@ if __name__ == '__main__':
     if not rargs.check() :
         help()
         exit()
+    os_env_path = rargs.prj + "/_os_env.yaml" 
+    if os.path.exists(os_env_path) :
+        os_env.load_env_conf(os_env_path)
     prj = build_prj(rargs.prj)
     prj.run(rargs.env,cmd,rargs.sysname)

@@ -204,6 +204,7 @@ HOME=$PYLON_HOME in=_prj/in.vim filter="*.py *.php *.sh *.vim *.ini *.txt *.conf
    cgi.py
    inf.py
    prj.py
+   os_env.py
    res.py
    run.py
    sysconf.py
@@ -337,6 +338,7 @@ DEMO=$PYLON_HOME/demo in=$PYLON_HOME/_prj/in.vim {
   build-patch.sh
   }
   _conf=_conf {
+   _os_env.yaml
   _pylon.yaml
   _pylon_ubu_ngx.yaml
    build=build {

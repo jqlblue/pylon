@@ -3,6 +3,7 @@ from inf import *
 from cgi import *
 from utls  import * 
 from sysconf import *
+from os_env import *
 
 import types , re , os , string   
 
@@ -83,7 +84,7 @@ class conf_file(resource,conf):
 class nginx_conf_tpl( file_tpl ):
     def config(self):
         file_tpl.config(self)
-        dst_path  = "/etc/nginx/sites-enabled"
+        dst_path  = get_env_conf().nginx_conf_path 
         tpl =  'rm $PATH/$DST ;ln -s $SRC $PATH/$DST'
         cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
         shell.execmd(cmd)
@@ -91,7 +92,7 @@ class nginx_conf_tpl( file_tpl ):
 class apache_conf_tpl( file_tpl ):
     def config(self):
         file_tpl.config(self)
-        dst_path  = "/etc/httpd/conf.d"
+        dst_path  = get_env_conf().apache_conf_path
         tpl =  'rm $PATH/$DST ;ln -s $SRC $PATH/$DST'
         cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
         shell.execmd(cmd)
@@ -187,7 +188,7 @@ class link(resource):
 class nginx_conf_link(link):
     def __init__(self,env,src):
         f_name = os.path.basename(src)
-        link.__init__(self,env,src,"/etc/nginx/sites-enabled/" + f_name ,True);
+        link.__init__(self,env,src,get_env_conf().nginx_conf_path + f_name ,True);
 
 
 class copy(resource):
@@ -351,8 +352,6 @@ class vars(resource):
 
 
 class cgi_svc(resource):
-    spawn_fcgi= "/usr/bin/spawn-fcgi"
-    php_cgi   = "/usr/bin/php5-cgi"
     ip        = "127.0.0.1"
     port      = "9000"
     proc_nu   = "2"
@@ -370,9 +369,9 @@ class cgi_svc(resource):
         self.proc_nu =  env_exp.value(self.proc_nu)
     def start(self):
         cmdtpl="$SPAWN_FCGI -C $FCGI_NU -a $IP -p $PORT -u nobody -f \"$PHP_CGI  -c $PHP_INI \""
-        cmd = Template(cmdtpl).substitute( SPAWN_FCGI=self.spawn_fcgi,
+        cmd = Template(cmdtpl).substitute( SPAWN_FCGI=get_env_conf().spawn_fcgi,
                 FCGI_NU=self.proc_nu, IP=self.ip,PORT= self.port, 
-                PHP_CGI=self.php_cgi,
+                PHP_CGI=get_env_conf().php_cgi,
                 PHP_INI=self.php_ini.path())
         shell.execmd(cmd)
     def stop(self):

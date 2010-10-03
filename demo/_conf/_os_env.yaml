@@ -1,0 +1,5 @@
+!OS.env_conf
+    nginx_conf_path  : "/etc/nginx/sites-enabled"
+    apache_conf_path : "/etc/httpd/conf.d"
+    spawn_fcgi       : "/usr/bin/spawn-fcgi"
+    php_cgi          : "/usr/bin/php5-cgi"
