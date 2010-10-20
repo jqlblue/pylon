@@ -2,14 +2,14 @@ from string import Template
 from utls  import * 
 import types , re , os , string   
 
-class shell:
+class shexec:
     SHOW = False
     DO   = True
     SUDO = False
     @staticmethod
     def debug():
-        shell.SHOW = True
-        shell.DO= False
+        shexec.SHOW = True
+        shexec.DO= False
 
     @staticmethod 
     def out2txt(cmd,txt):
@@ -19,22 +19,23 @@ class shell:
 
     @staticmethod 
     def sudo_enable():
-        shell.SUDO= True
+        shexec.SUDO= True
 
     @staticmethod 
     def sudo_disable():
-        shell.SUDO= False 
+        shexec.SUDO= False 
 
 
     @staticmethod
     def execmd(cmd):
-        cmd_txt = "/tmp/pylon_rigger_cmd.sh" 
-        if shell.SHOW  :
+        cmd_txt = "/tmp/${USER}_pylon_rigger_cmd.sh" 
+        cmd_txt = env_exp.value(cmd_txt)
+        if shexec.SHOW  :
             print( cmd  + "\n")
-        if shell.DO  :
-            shell.out2txt(cmd,cmd_txt)
+        if shexec.DO  :
+            shexec.out2txt(cmd,cmd_txt)
             os.system("chmod +x " +  cmd_txt)
-            if shell.SUDO  :
+            if shexec.SUDO  :
                 return os.system("sudo " +  cmd_txt)
             else:
                 return os.system( cmd_txt)
@@ -44,9 +45,9 @@ class shell:
 
 class scope_sudo:
     def __enter__(self):
-        shell.sudo_enable()
+        shexec.sudo_enable()
     def __exit__(self,exc_type,exc_value,traceback):
-        shell.sudo_disable()
+        shexec.sudo_disable()
 
 
 class resource :
@@ -70,6 +71,11 @@ class resource :
         self.call_impl(self.locate)
     def call_index(self):
         self.call_impl(self.index)
+    def call_shell(self):
+        self.call_impl(self.shell)
+
+    def shell(self):
+        pass
     def start(self):
         pass
     def stop(self):
@@ -87,7 +93,8 @@ class resource :
 class controlor(resource):
     res=[]
     def __init__(self, *res):
-        self.res = res
+        if len(res) >=1 :
+            self.res = res
         pass
     def start(self):
         if self.allow():
@@ -111,8 +118,17 @@ class controlor(resource):
         if self.allow():
             for r in self.res :
                 r.call_data()
+
+    def shell(self):
+        if self.allow():
+            for r in self.res :
+                r.call_shell()
     def allow(self):
         return True
+    def append(self,item):
+#        print(dir(self.res))
+#        print(self.res)
+        self.res.append(item)
 
 
 def dist_value_of(dist,key,default=None):

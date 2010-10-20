@@ -50,7 +50,7 @@ if __name__ == '__main__':
         if o == "-c":
             cmd = a
         if o == "-d":
-            shell.SHOW = True
+            shexec.SHOW = True
         if o == "-e":
             rargs.env = a
         if o == "-s":

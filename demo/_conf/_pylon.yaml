@@ -2,7 +2,7 @@ sys:
     admin:  !R.system
             res: 
                 - !R.vars
-                     defs: { APP_SYS: "admin", DOMAIN : "admin.${MAIN_DOMAIN}"  }
+                     defs: { APP_SYS: "admin", DOMAIN : "admin.${MAIN_DOMAIN}" ,PHP_INI : "${PRJ_ROOT}/_conf/used/admin_php.ini" }
                 - !R.apache_conf_tpl  
                         env: !R.vars
                             defs:  { ADMIN_DOMAIN : "admin.${DOMAIN}",  FASTCGI_PORT: "${PORT_BASE}1" }
@@ -16,13 +16,11 @@ sys:
                         dst:  "${PRJ_ROOT}/_src/_config.php"
                     
                 - !R.action
-                    ini: "${PRJ_ROOT}/_conf/used/admin_php.ini"
                     src: "${PRJ_ROOT}/_src/ : ${PRJ_ROOT}/_src/_apps/admin/"
                     dst: "${PRJ_ROOT}/_src/_apps/admin"
-                - !R.host
-                    ip: "127.0.0.1"
-                    domain: "${DOMAIN}"
-                    sudo: True
+                - !R.shell
+                    script: "${PRJ_ROOT}/bin/test.sh"
+                    
 
 env:
     dev: !R.vars 

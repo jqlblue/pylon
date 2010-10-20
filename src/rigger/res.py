@@ -33,17 +33,17 @@ class mysql(resource) :
         sql +="GRANT ALL PRIVILEGES ON $DBNAME.* TO '$USER'@'localhost' IDENTIFIED BY '$PASSWD' ;"
         cmd = Template(sql).substitute(DBNAME=self.name,USER=self.user,PASSWD=self.password)
         print("create database , please input mysql root password: ")
-        shell.execmd(Template( 'mysql  -uroot -p -e "$CMD" ').substitute(CMD=cmd ))
+        shexec.execmd(Template( 'mysql  -uroot -p -e "$CMD" ').substitute(CMD=cmd ))
         cmdtpl  = 'mysql $DBNAME -u$USER -p$PASSWD < $SQL'
-        shell.execmd(Template(cmdtpl).substitute(DBNAME=self.name,USER=self.user,PASSWD=self.password,SQL=self.sql))
+        shexec.execmd(Template(cmdtpl).substitute(DBNAME=self.name,USER=self.user,PASSWD=self.password,SQL=self.sql))
 
 class nginx (resource):
     def start(self):
         cmd = ' service nginx start '
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
     def stop(self):
         cmd = ' service nginx stop'
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
 
 class conf (resource):
     def path(self):
@@ -87,7 +87,7 @@ class nginx_conf_tpl( file_tpl ):
         dst_path  = get_env_conf().nginx_conf_path 
         tpl =  'rm $PATH/$DST ;ln -s $SRC $PATH/$DST'
         cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
 
 class apache_conf_tpl( file_tpl ):
     def config(self):
@@ -95,16 +95,16 @@ class apache_conf_tpl( file_tpl ):
         dst_path  = get_env_conf().apache_conf_path
         tpl =  'rm $PATH/$DST ;ln -s $SRC $PATH/$DST'
         cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
 
 
 class apache (resource):
     def start(self):
         cmd = ' /sbin/service httpd start '
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
     def stop(self):
         cmd = ' /sbin/service httpd stop'
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
 
 
 
@@ -112,28 +112,44 @@ class files (resource):
     pass 
 
 
-class script (resource):
-    def __init__(self,env,script_file):
+class shell(resource):
+    env = None
+    def __init__(self,env,script):
         self.env = env
-        self.script_file = script_file 
+        self.script = script 
     def locate(self):
-        self.env.locate()
-        self.script_file = env_exp.value(self.script_file)
+        if  not self.env is None:
+            self.env.locate()
+        self.script = env_exp.value(self.script)
 
     def config(self):
-        cmd = self.script_file  +  " config"   
-        shell.execmd(cmd)
+        cmd = self.script  +  " config"   
+        shexec.execmd(cmd)
 
     def start(self):
-        cmd = self.script_file  +  " start"   
-        shell.execmd(cmd)
+        cmd = self.script  +  " start"   
+        shexec.execmd(cmd)
 
     def stop(self):
-        cmd = self.script_file  +  " stop"   
-        shell.execmd(cmd)
+        cmd = self.script  +  " stop"   
+        shexec.execmd(cmd)
     def data(self):
-        cmd = self.script_file  +  " data"   
-        shell.execmd(cmd)
+        cmd = self.script  +  " data"   
+        shexec.execmd(cmd)
+    def shell(self):
+        cmd = self.script  +  " data"   
+        shexec.execmd(cmd)
+
+class dx_shell(resource):
+    def __init__(self,env,script):
+        self.env = env
+        self.script = script 
+    def locate(self):
+        self.env.locate()
+        self.script = env_exp.value(self.script)
+    def shell(self):
+        cmd = self.script    
+        shexec.execmd(cmd)
 
 class host(resource):
     def __init__(self,ip,domain):
@@ -147,7 +163,7 @@ class host(resource):
         path=os.path.dirname(os.path.realpath(__file__))
         cmdtpl="python $PATH/sysconf.py  -n $DOMAIN -f /etc/hosts  -t '#' -c '$IP $DOMAIN' "
         c = Template(cmdtpl).substitute(PATH=path,IP=self.ip,DOMAIN=self.domain)
-        shell.execmd(c)
+        shexec.execmd(c)
 
 class links(resource):
     links_map={}
@@ -163,7 +179,7 @@ class links(resource):
         cmdtpl ="if test -L $DST ; then rm -rf  $DST ; fi ; dirname $DST | xargs mkdir -p ; ln -s  $SRC $DST"
         for k ,v in self.links_map.items():
             cmd = Template(cmdtpl).substitute(DST=k,SRC =v)
-            shell.execmd(cmd)
+            shexec.execmd(cmd)
 
 class link(resource):
     def __init__(self,env,src,dst,force=False):
@@ -183,7 +199,7 @@ class link(resource):
         else :
             cmdtpl ="if ! test -L $DST ; then   dirname $DST | xargs mkdir -p ;  ln -s   $SRC $DST ; fi;  "
         cmd = Template(cmdtpl).substitute(DST=self.dst,SRC =self.src)
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
 
 class nginx_conf_link(link):
     def __init__(self,env,src):
@@ -209,7 +225,7 @@ class copy(resource):
         else :
             cmdtpl ="if ! test -e $DST ; then   dirname $DST | xargs mkdir -p ; cp -r  $SRC $DST ; fi;  "
         cmd = Template(cmdtpl).substitute(DST=self.dst,SRC =self.src)
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
 
 class path(resource):
     env = None 
@@ -232,7 +248,7 @@ class path(resource):
         cmdtpl ="rm -rf  $DST ; mkdir -p   $DST ; chmod a+w  $DST; "
         for v in self.paths :
             cmd = Template(cmdtpl).substitute(DST=v)
-            shell.execmd(cmd)
+            shexec.execmd(cmd)
 
 
 class autoload(resource): 
@@ -246,11 +262,11 @@ class autoload(resource):
         self.dst  = env_exp.value(self.dst)
     def index(self):
         path=os.path.dirname(os.path.realpath(__file__))
-        shell.execmd(Template('echo "" > $ROOT/._find_cls.tmp').substitute(ROOT=self.root)) 
+        shexec.execmd(Template('echo "" > $ROOT/._find_cls.tmp').substitute(ROOT=self.root)) 
         cmdtpl = 'find $SRC -name "*.php"   |  xargs  grep  -E "^ *(abstract)? *class "  >> $ROOT/._find_cls.tmp'
         for  s in self.src.split(':') :
             cmd = Template(cmdtpl).substitute( SRC =  self.root + '/' + s ,ROOT=self.root)
-            shell.execmd(cmd)
+            shexec.execmd(cmd)
 
         auto_file = self.root + "/" + self.dst +  "/_autoload_data.php" ;
         with   open(auto_file,'w') as autoload :
@@ -270,7 +286,7 @@ class autoload(resource):
 
 class action(resource):
     dst = None
-    def __init__(self,ini,src,dst=None):
+    def __init__(self,src,dst=None):
         self.src = src  
         self.dst = dst
         self.ini = ini
@@ -279,18 +295,18 @@ class action(resource):
         if self.dst == None:
             self.dst = self.src 
         self.dst = env_exp.value(self.dst)
-        self.ini = env_exp.value(self.ini)
+        self.ini = env_exp.value("${PHP_INI}")
 
     def index(self):
         path=os.path.dirname(os.path.realpath(__file__))
-        shell.execmd(Template('echo "" > $DST/._act_cls.tmp').substitute(DST=self.dst)) 
+        shexec.execmd(Template('echo "" > $DST/._act_cls.tmp').substitute(DST=self.dst)) 
         cmdtpl1 = 'find $SRC -name "*.php"   |  xargs cat | grep "class Action_"  >> $DST/._act_cls.tmp'
         for  s in self.src.split(':') :
             cmd = Template(cmdtpl1).substitute(PYLON = path + "/../" , SRC =  s ,DST=self.dst )
-            shell.execmd(cmd)
+            shexec.execmd(cmd)
         cmdtpl2 = "php -c $INI  $PYLON/pylon/xmvc/build_conf.php  $DST/init.php  $DST/._act_cls.tmp $DST/_act_conf.php"
         cmd = Template(cmdtpl2).substitute(INI= self.ini, PYLON = path + "/../" , DST =  self.dst)
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
 
 class pylon_ui(resource):
     def __init__(self,web_inf,theme="brood"):
@@ -304,7 +320,7 @@ class pylon_ui(resource):
         path=os.path.dirname(os.path.realpath(__file__))
         cmdtpl = "$PYLON/pylon_ui/setup.sh $SRC/scripts/  $SRC/styles  $SRC/images/  $THEME "
         cmd = Template(cmdtpl).substitute(PYLON = path + "/../" , SRC =  self.web_inf , THEME = self.theme )
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
 
 
 class system( controlor):
@@ -346,7 +362,7 @@ class vars(resource):
             name= name.upper()
             val = env_exp.value(val)
             os.environ[name]=val
-            if inf.shell.SHOW :
+            if inf.shexec.SHOW :
                 print( name  + " = " + val)
 
 
@@ -373,7 +389,7 @@ class cgi_svc(resource):
                 FCGI_NU=self.proc_nu, IP=self.ip,PORT= self.port, 
                 PHP_CGI=get_env_conf().php_cgi,
                 PHP_INI=self.php_ini.path())
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
     def stop(self):
         path=os.path.dirname(os.path.realpath(__file__))
         cmdtpl="$PATH/kill_procs.sh $CMD $FILTER"
@@ -381,7 +397,7 @@ class cgi_svc(resource):
         if not self.proc_tag == "" :
             filter = self.proc_tag 
         cmd = Template(cmdtpl).substitute(PATH=path,CMD=self.php_cgi, FILTER=filter )
-        shell.execmd(cmd)
+        shexec.execmd(cmd)
 
 
 def restart_op(obj):
@@ -398,6 +414,7 @@ class prj(controlor) :
         self.env = env 
     def run(self,envname,cmd,sysname):
         system.allow_sys = sysname
+        shell_cmds=controlor()
         execmd = None
         if cmd == "start" :
             execmd = lambda x :  x.call_start() 
@@ -413,6 +430,10 @@ class prj(controlor) :
 
         if cmd == "index" :
             execmd = lambda x :  x.call_index() 
+        if re.match('shell:\W+',cmd) :
+            x=dx_shell(vars(),cmd.split(':')[1])
+            shell_cmds.append(x)
+            execmd = lambda x :  x.shell()
         if execmd == None :
             print("not support this cmd : " + cmd )
             return 
@@ -430,6 +451,7 @@ class prj(controlor) :
             sys_obj = self.sys[sysname]
             sys_obj.call_locate()
             execmd(sys_obj)
+        execmd(shell_cmds)
         return 
 
 

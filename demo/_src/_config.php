@@ -1,5 +1,5 @@
 <?php
-$prj_path  = "/home/dev/devspace/pylon/src/:/home/dev/devspace/pylon/demo/_src:/home/z/php:";
+$prj_path  = "/home/zuowenjian/devspace/pylon/src/:/home/zuowenjian/devspace/pylon/demo/_src:/home/z/php:";
 set_include_path($prj_path.get_include_path() );
 class DBconf 
 {/*{{{*/
@@ -11,14 +11,14 @@ class DBconf
 
 class Conf
 {
-    const PRJ_ROOT='/home/dev/devspace/pylon/demo';
+    const PRJ_ROOT='/home/zuowenjian/devspace/pylon/demo';
     const APP_NAME = 'PYLON管理后台';
     const JS_RELEASE=false;
     const CSS_RELEASE=false;
     const JS_VER=2;
     const CSS_VER=2;
     const DEBUG_ENABLE=true;
-    const PYLON='/home/dev/devspace/pylon/src';
+    const PYLON='/home/zuowenjian/devspace/pylon/src';
     const ZMARK_ROOT='/home/z/php/zmark/';
 
     const ADMIN_TPL_PATH='_src/_web_inf/tpls/admin/';
