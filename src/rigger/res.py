@@ -260,7 +260,7 @@ class autoload(resource):
         self.src  = env_exp.value(self.src)
         self.root = env_exp.value(self.root)
         self.dst  = env_exp.value(self.dst)
-    def index(self):
+    def config(self):
         path=os.path.dirname(os.path.realpath(__file__))
         shexec.execmd(Template('echo "" > $ROOT/._find_cls.tmp').substitute(ROOT=self.root)) 
         cmdtpl = 'find $SRC -name "*.php"   |  xargs  grep  -E "^ *(abstract)? *class "  >> $ROOT/._find_cls.tmp'
@@ -297,7 +297,7 @@ class action(resource):
         self.dst = env_exp.value(self.dst)
         self.ini = env_exp.value("${PHP_INI}")
 
-    def index(self):
+    def config(self):
         path=os.path.dirname(os.path.realpath(__file__))
         shexec.execmd(Template('echo "" > $DST/._act_cls.tmp').substitute(DST=self.dst)) 
         cmdtpl1 = 'find $SRC -name "*.php"   |  xargs cat | grep "class Action_"  >> $DST/._act_cls.tmp'
@@ -428,8 +428,6 @@ class prj(controlor) :
         if cmd == "data" :
             execmd = lambda x :  x.call_data() 
 
-        if cmd == "index" :
-            execmd = lambda x :  x.call_index() 
         if re.match('shell:\W+',cmd) :
             x=dx_shell(vars(),cmd.split(':')[1])
             shell_cmds.append(x)

@@ -69,8 +69,6 @@ class resource :
         self.call_impl(self.data)
     def call_locate(self):
         self.call_impl(self.locate)
-    def call_index(self):
-        self.call_impl(self.index)
     def call_shell(self):
         self.call_impl(self.shell)
 
@@ -85,8 +83,6 @@ class resource :
     def locate(self):
         pass
     def data(self):
-        pass
-    def index(self):
         pass
 
 
