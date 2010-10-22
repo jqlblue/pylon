@@ -355,8 +355,8 @@ class project:
 
 class vars(resource):
     defs={}
-    def __init__(self, *vars):
-        self.defs = vars
+    def __init__(self, xvars={}):
+        self.defs = xvars
     def locate(self):
         for name , val in   self.defs.items():
             name= name.upper()
@@ -435,6 +435,8 @@ class prj(controlor) :
         if execmd == None :
             print("not support this cmd : " + cmd )
             return 
+
+        vars({'_UID':str(os.getuid())}).call_locate()
 
         env_obj = self.env[envname]
         env_obj.call_locate()

@@ -341,22 +341,17 @@ DEMO=$PYLON_HOME/demo in=$PYLON_HOME/_prj/in.vim {
    _os_env.yaml
   _pylon.yaml
   _pylon_ubu_ngx.yaml
-   build=build {
-   dev_cube_admin_ngx.conf
-   dev_cube_admin_php.ini
-   dev_cube_config.php
-   dev_cube_stage_ngx.conf
-   }
    options=options {
+   tpl_apc.conf
    tpl_config.php
    tpl_crontab
    tpl_ngx.conf
-   tpl_apc.conf
    tpl_php.ini
    tpl_syslog-ng.conf
    }
    used=used {
    admin_apc.conf
+   admin_config.ini
    admin_config.php
    admin_ngx.conf
    admin_php.ini
@@ -371,9 +366,11 @@ DEMO=$PYLON_HOME/demo in=$PYLON_HOME/_prj/in.vim {
   srcindex.sh
   }
   _src=_src {
-   hello.php
   _action.tmp
   _autoload_data.php
+  _config.php
+  admin_config.php
+  hello.php
   version.txt
   _apps=_apps {
    admin=admin {
