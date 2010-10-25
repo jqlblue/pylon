@@ -1,5 +1,6 @@
 HOME=$PYLON_HOME in=_prj/in.vim filter="*.py *.php *.sh *.vim *.ini *.txt *.conf *.sql *.yaml  *.html" {
  deploy=deploy {
+  depends.sh
   pub.sh
   pub2apt.sh
   debian=debian {
@@ -339,6 +340,7 @@ DEMO=$PYLON_HOME/demo in=$PYLON_HOME/_prj/in.vim {
   }
   _conf=_conf {
    _os_env.yaml
+   _os_env_ubt.yaml
   _pylon.yaml
   _pylon_ubu_ngx.yaml
    options=options {

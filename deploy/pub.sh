@@ -1,5 +1,6 @@
-#!/bin/bash
-CUR_ROOT=`readlink /proc/$$/fd/255 | xargs dirname`
+RUN_DIR=`pwd`
+FILE_PATH=`dirname $0`
+CUR_PATH=$RUN_DIR/$FILE_PATH/
 cd $CUR_ROOT
 ./debian/deploy.sh make;
 cp -rf ./debian/i386/*.deb   /apt_pkgs/dists/gx/main/binary-i386/ ; 

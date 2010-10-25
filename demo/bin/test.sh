@@ -1,10 +1,10 @@
-#!/bin/bash
 echo "****************************************************"
 echo "****************This is Test Shell Scrite***********"
 echo "----------------Show Env Var ------------------------"
 echo $PRJ_ROOT
 echo $TEST_VAR
 echo $_UID
+
 
 case $1 in
     config)

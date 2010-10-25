@@ -73,6 +73,7 @@ if __name__ == '__main__':
         exit()
     os_env_path = rargs.prj + "/_os_env.yaml" 
     if os.path.exists(os_env_path) :
-        os_env.load_env_conf(os_env_path)
+        os_env.conf_admin.init_by_yaml(os_env_path)
+#        os_env.load_env_conf(os_env_path)
     prj = build_prj(rargs.prj)
     prj.run(rargs.env,cmd,rargs.sysname)
