@@ -6,6 +6,7 @@ echo $PRJ_ROOT
 echo $TEST_VAR
 echo $_UID
 
+
 case $1 in
     config)
         echo " Exec Config "
