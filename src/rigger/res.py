@@ -39,10 +39,10 @@ class mysql(resource) :
 
 class nginx (resource):
     def start(self):
-        cmd = ' service nginx start '
+        cmd = get_env_conf().nginx_ctrl + ' start '
         shexec.execmd(cmd)
     def stop(self):
-        cmd = ' service nginx stop'
+        cmd = get_env_conf().nginx_ctrl + ' stop'
         shexec.execmd(cmd)
 
 class conf (resource):
@@ -93,6 +93,7 @@ class apache_conf_tpl( file_tpl ):
     def config(self):
         file_tpl.config(self)
         dst_path  = get_env_conf().apache_conf_path
+        print(dst_path)
         tpl =  'rm $PATH/$DST ;ln -s $SRC $PATH/$DST'
         cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
         shexec.execmd(cmd)
@@ -100,10 +101,10 @@ class apache_conf_tpl( file_tpl ):
 
 class apache (resource):
     def start(self):
-        cmd = ' /sbin/service httpd start '
+        cmd = get_env_conf().apache_ctrl + ' start '
         shexec.execmd(cmd)
     def stop(self):
-        cmd = ' /sbin/service httpd stop'
+        cmd = get_env_conf().apache_ctrl + ' stop'
         shexec.execmd(cmd)
 
 
