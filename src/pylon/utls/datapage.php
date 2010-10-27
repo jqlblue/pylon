@@ -40,7 +40,7 @@ class DataPage extends PropertyObj
     }/*}}}*/
     public function nextPage()
     {
-         return $this->goto($this->curPage + 1);
+         return $this->gotoPage($this->curPage + 1);
     }
     public function getRowRange(&$begin,&$count)
     {/*{{{*/
