@@ -1,12 +1,15 @@
 import  string ,   yaml  
 
 class env_conf:
-    nginx_conf_path  : "/usr/local/nginx/conf/include"
-    nginx_ctrl       : "/usr/local/nginx/bin/nginx"
-    apache_ctrl      : "/usr/local/apache2/bin/apachectl"
-    apache_conf_path : "/usr/local/apache2/conf/include"
-    spawn_fcgi       : "/usr/local/spawn-fcgi/bin/spawn-fcgi"
-    php_cgi          : "/usr/local/php/bin/php-cgi"
+    nginx_conf_path  = "/usr/local/nginx/conf/include"
+    nginx_ctrl       = "/usr/local/nginx/bin/nginx"
+    apache_ctrl      = "/usr/local/apache2/bin/apachectl"
+    apache_conf_path = "/usr/local/apache2/conf/include"
+    spawn_fcgi       = "/usr/local/spawn-fcgi/bin/spawn-fcgi"
+    php_cgi          = "/usr/local/php/bin/php-cgi"
+    php              = "/usr/local/php/bin/php"
+    python           = "python"
+
 
 
 class conf_admin:

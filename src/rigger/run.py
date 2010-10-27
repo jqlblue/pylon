@@ -38,9 +38,10 @@ def build_prj(conf_path):
 
 if __name__ == '__main__':
     sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-    opts, args = getopt.getopt(sys.argv[1:], "f:e:p:c:ds:", ["conf=","env=","prj=","cmd=","debug","sysname="])
+    opts, args = getopt.getopt(sys.argv[1:], "f:e:p:c:ds:o", ["conf=","env=","prj=","cmd=","debug","sysname=","os="])
     rargs = runargs()  
     conf_file = None
+    os_env_file = "_os_env.yaml"
     cmd = None
     for o, a in opts:
         if o == "-f":
@@ -55,6 +56,9 @@ if __name__ == '__main__':
             rargs.env = a
         if o == "-s":
             rargs.sysname = a
+
+        if o == "-o":
+            os_env_file = a 
 
     if cmd is None:
         print("no cmd ")
@@ -71,9 +75,8 @@ if __name__ == '__main__':
     if not rargs.check() :
         help()
         exit()
-    os_env_path = rargs.prj + "/_os_env.yaml" 
+    os_env_path = rargs.prj + "/" + os_env_file
     if os.path.exists(os_env_path) :
         os_env.conf_admin.init_by_yaml(os_env_path)
-#        os_env.load_env_conf(os_env_path)
     prj = build_prj(rargs.prj)
     prj.run(rargs.env,cmd,rargs.sysname)

@@ -162,8 +162,8 @@ class host(resource):
 
     def config(self):
         path=os.path.dirname(os.path.realpath(__file__))
-        cmdtpl="python $PATH/sysconf.py  -n $DOMAIN -f /etc/hosts  -t '#' -c '$IP $DOMAIN' "
-        c = Template(cmdtpl).substitute(PATH=path,IP=self.ip,DOMAIN=self.domain)
+        cmdtpl="$PYTHON $PATH/sysconf.py  -n $DOMAIN -f /etc/hosts  -t '#' -c '$IP $DOMAIN' "
+        c = Template(cmdtpl).substitute(PYTHON=get_env_conf().python,PATH=path,IP=self.ip,DOMAIN=self.domain)
         shexec.execmd(c)
 
 class links(resource):
@@ -305,8 +305,8 @@ class action(resource):
         for  s in self.src.split(':') :
             cmd = Template(cmdtpl1).substitute(PYLON = path + "/../" , SRC =  s ,DST=self.dst )
             shexec.execmd(cmd)
-        cmdtpl2 = "php -c $INI  $PYLON/pylon/xmvc/build_conf.php  $DST/init.php  $DST/._act_cls.tmp $DST/_act_conf.php"
-        cmd = Template(cmdtpl2).substitute(INI= self.ini, PYLON = path + "/../" , DST =  self.dst)
+        cmdtpl2 = "$PHP -c $INI  $PYLON/pylon/xmvc/build_conf.php  $DST/init.php  $DST/._act_cls.tmp $DST/_act_conf.php"
+        cmd = Template(cmdtpl2).substitute(PHP=get_env_conf().php ,INI= self.ini, PYLON = path + "/../" , DST =  self.dst)
         shexec.execmd(cmd)
 
 class pylon_ui(resource):

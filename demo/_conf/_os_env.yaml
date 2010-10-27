@@ -4,3 +4,6 @@
     apache_conf_path : "/usr/local/apache2/conf/include"
     spawn_fcgi       : "/usr/bin/spawn-fcgi"
     php_cgi          : "/usr/bin/php5-cgi"
+    php_cgi          : "/usr/local/php/bin/php-cgi"
+    php              : "/usr/local/php/bin/php"
+    python           : "python"
