@@ -149,7 +149,11 @@ class shell(resource):
         cmd = self.script  +  " data"   
         shexec.execmd(cmd)
     def check(self):
-        self.check_print(os.path.exists(self.script),self.script)
+        exists = os.path.exists(self.script)
+        self.check_print(exists,self.script)
+        if exists :
+            cmd = self.script  +  " check"   
+            shexec.execmd(cmd)
 
 class dx_shell(resource):
     def __init__(self,env,script):
