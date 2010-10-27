@@ -71,6 +71,8 @@ class resource :
         self.call_impl(self.locate)
     def call_shell(self):
         self.call_impl(self.shell)
+    def call_check(self):
+        self.call_impl(self.check)
 
     def shell(self):
         pass
@@ -84,7 +86,15 @@ class resource :
         pass
     def data(self):
         pass
-
+    def check(self):
+        pass
+    def clsname(self):
+        return self.__class__.__name__
+    def check_print(self,is_true,msg):
+        if is_true:
+            print( "%-100.100s%-20.20s-[Y]" % (msg ,self.clsname())  )
+        else:
+            print( "%-100.100s%-20.20s-[X]" % (msg ,self.clsname())  )
 
 class controlor(resource):
     res=[]
@@ -114,6 +124,10 @@ class controlor(resource):
         if self.allow():
             for r in self.res :
                 r.call_data()
+    def check(self):
+        if self.allow():
+            for r in self.res :
+                r.call_check()
 
     def shell(self):
         if self.allow():

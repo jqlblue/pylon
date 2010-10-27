@@ -23,6 +23,10 @@ case $1 in
         echo " Exec stop "
         exit;
         ;;
+    check)
+        echo " Exec check"
+        exit;
+        ;;
 esac
 
 echo "*****************End***********"

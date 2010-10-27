@@ -37,6 +37,7 @@ class mysql(resource) :
         cmdtpl  = 'mysql $DBNAME -u$USER -p$PASSWD < $SQL'
         shexec.execmd(Template(cmdtpl).substitute(DBNAME=self.name,USER=self.user,PASSWD=self.password,SQL=self.sql))
 
+
 class nginx (resource):
     def start(self):
         cmd = get_env_conf().nginx_ctrl + ' start '
@@ -70,6 +71,8 @@ class file_tpl(resource,conf):
         tpl_builder.build(self.tpl,self.dst)
     def path(self):
         return  self.dst
+    def check(self):
+        self.check_print(os.path.exists(self.dst),self.dst)
 
 
 class conf_file(resource,conf):
@@ -106,6 +109,11 @@ class apache (resource):
     def stop(self):
         cmd = get_env_conf().apache_ctrl + ' stop'
         shexec.execmd(cmd)
+    def check(self):
+        ctrl = get_env_conf().apache_ctrl 
+        self.check_print(os.path.exists(ctrl),ctrl)
+
+
 
 
 
@@ -140,6 +148,8 @@ class shell(resource):
     def shell(self):
         cmd = self.script  +  " data"   
         shexec.execmd(cmd)
+    def check(self):
+        self.check_print(os.path.exists(self.script),self.script)
 
 class dx_shell(resource):
     def __init__(self,env,script):
@@ -227,6 +237,8 @@ class copy(resource):
             cmdtpl ="if ! test -e $DST ; then   dirname $DST | xargs mkdir -p ; cp -r  $SRC $DST ; fi;  "
         cmd = Template(cmdtpl).substitute(DST=self.dst,SRC =self.src)
         shexec.execmd(cmd)
+    def check(self):
+        self.check_print(os.path.exists(self.dst),self.dst)
 
 class path(resource):
     env = None 
@@ -250,7 +262,9 @@ class path(resource):
         for v in self.paths :
             cmd = Template(cmdtpl).substitute(DST=v)
             shexec.execmd(cmd)
-
+    def check(self):
+        for v in self.paths :
+            self.check_print(os.path.exists(v),v)
 
 class autoload(resource): 
     def __init__(self,root,src,dst):
@@ -284,6 +298,11 @@ class autoload(resource):
             autoload.write("'ok'=>'ok');")
         autoload.close()
 
+    def check(self):
+        auto_file = self.root + "/" + self.dst +  "/_autoload_data.php" 
+        self.check_print(os.path.exists(auto_file),auto_file)
+
+
 
 class action(resource):
     dst = None
@@ -308,6 +327,10 @@ class action(resource):
         cmdtpl2 = "$PHP -c $INI  $PYLON/pylon/xmvc/build_conf.php  $DST/init.php  $DST/._act_cls.tmp $DST/_act_conf.php"
         cmd = Template(cmdtpl2).substitute(PHP=get_env_conf().php ,INI= self.ini, PYLON = path + "/../" , DST =  self.dst)
         shexec.execmd(cmd)
+
+    def check(self):
+        action= self.dst+ "/_act_conf.php"
+        self.check_print(os.path.exists(action),action)
 
 class pylon_ui(resource):
     def __init__(self,web_inf,theme="brood"):
@@ -428,6 +451,9 @@ class prj(controlor) :
 
         if cmd == "data" :
             execmd = lambda x :  x.call_data() 
+
+        if cmd == "check" :
+            execmd = lambda x :  x.call_check() 
 
         if re.match('shell:\W+',cmd) :
             x=dx_shell(vars(),cmd.split(':')[1])
