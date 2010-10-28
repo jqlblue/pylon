@@ -117,11 +117,11 @@ class apache_conf_tpl( file_tpl ):
 
 class apache (resource):
     def start(self):
-        cmd = get_env_conf().apache_ctrl + ' start '
+        cmd = get_env_conf().apache_ctrl + ' graceful'
         shexec.execmd(cmd)
-    def stop(self):
-        cmd = get_env_conf().apache_ctrl + ' stop'
-        shexec.execmd(cmd)
+#    def stop(self):
+#        cmd = get_env_conf().apache_ctrl + ' stop'
+#        shexec.execmd(cmd)
     def check(self):
         ctrl = get_env_conf().apache_ctrl 
         self.check_print(os.path.exists(ctrl),ctrl)
