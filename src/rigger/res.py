@@ -73,6 +73,10 @@ class file_tpl(resource,conf):
         return  self.dst
     def check(self):
         self.check_print(os.path.exists(self.dst),self.dst)
+    def clean(self):
+        cmdtpl ="if test -e $DST ; then rm -rf  $DST ; fi "
+        cmd = Template(cmdtpl).substitute(DST=self.dst)
+        shexec.execmd(cmd)
 
 
 class conf_file(resource,conf):
@@ -91,13 +95,22 @@ class nginx_conf_tpl( file_tpl ):
         tpl =  'rm $PATH/$DST ;ln -s $SRC $PATH/$DST'
         cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
         shexec.execmd(cmd)
+    def clean(self):
+        dst_path  = get_env_conf().nginx_conf_path 
+        tpl =  'rm $PATH/$DST ; rm  $SRC;'
+        cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
+        shexec.execmd(cmd)
 
 class apache_conf_tpl( file_tpl ):
     def config(self):
         file_tpl.config(self)
         dst_path  = get_env_conf().apache_conf_path
-        print(dst_path)
         tpl =  'rm $PATH/$DST ;ln -s $SRC $PATH/$DST'
+        cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
+        shexec.execmd(cmd)
+    def clean(self):
+        dst_path  = get_env_conf().apache_conf_path
+        tpl =  'if test -e $PATH/$DST ; then  rm $PATH/$DST ; fi; if test -e $SRC ; then rm $SRC ; fi;'
         cmd = Template(tpl).substitute(PATH=dst_path, DST=os.path.basename(self.dst), SRC=self.dst)
         shexec.execmd(cmd)
 
@@ -146,7 +159,11 @@ class shell(resource):
         cmd = self.script  +  " data"   
         shexec.execmd(cmd)
     def shell(self):
-        cmd = self.script  +  " data"   
+        cmd = self.script  +  " shell"   
+        shexec.execmd(cmd)
+
+    def clean(self):
+        cmd = self.script  +  " clean"   
         shexec.execmd(cmd)
     def check(self):
         exists = os.path.exists(self.script)
@@ -195,6 +212,16 @@ class links(resource):
         for k ,v in self.links_map.items():
             cmd = Template(cmdtpl).substitute(DST=k,SRC =v)
             shexec.execmd(cmd)
+    def check(self):
+        for k ,v in self.links_map.items():
+            self.check_print(os.path.exists(k));
+
+    def clean(self):
+        cmdtpl ="if test -e $DST ; then rm -rf  $DST ; fi "
+        for k ,v in self.links_map.items():
+            cmd = Template(cmdtpl).substitute(DST=k,SRC =v)
+            shexec.execmd(cmd)
+
 
 class link(resource):
     def __init__(self,env,src,dst,force=False):
@@ -215,6 +242,15 @@ class link(resource):
             cmdtpl ="if ! test -L $DST ; then   dirname $DST | xargs mkdir -p ;  ln -s   $SRC $DST ; fi;  "
         cmd = Template(cmdtpl).substitute(DST=self.dst,SRC =self.src)
         shexec.execmd(cmd)
+
+    def clean(self):
+        self.check_print(os.path.exists(self.dst));
+        cmdtpl ="if test -e $DST ; then rm -rf  $DST ; fi ; "
+        cmd = Template(cmdtpl).substitute(DST=self.dst)
+        shexec.execmd(cmd)
+
+    def check(self):
+        self.check_print(os.path.exists(self.dst))
 
 class nginx_conf_link(link):
     def __init__(self,env,src):
@@ -243,6 +279,10 @@ class copy(resource):
         shexec.execmd(cmd)
     def check(self):
         self.check_print(os.path.exists(self.dst),self.dst)
+    def clean(self):
+        cmdtpl ="if test -e $DST ; then rm -rf  $DST ; fi ; "
+        cmd = Template(cmdtpl).substitute(DST=self.dst,SRC =self.src)
+        shexec.execmd(cmd)
 
 class path(resource):
     env = None 
@@ -269,6 +309,12 @@ class path(resource):
     def check(self):
         for v in self.paths :
             self.check_print(os.path.exists(v),v)
+    def clean(self):
+        cmdtpl ="if  test -e $DST ; then rm -rf  $DST ; fi ;  "
+        for v in self.paths :
+            cmd = Template(cmdtpl).substitute(DST=v)
+            shexec.execmd(cmd)
+
 
 class autoload(resource): 
     def __init__(self,root,src,dst):
@@ -306,6 +352,11 @@ class autoload(resource):
         auto_file = self.root + "/" + self.dst +  "/_autoload_data.php" 
         self.check_print(os.path.exists(auto_file),auto_file)
 
+    def clean(self):
+        auto_file = self.root + "/" + self.dst +  "/_autoload_data.php" 
+        cmdtpl ="if test -e $DST ; then rm -f  $DST ; fi ; "
+        cmd = Template(cmdtpl).substitute(DST=auto_file)
+        shexec.execmd(cmd)
 
 
 class action(resource):
@@ -335,6 +386,12 @@ class action(resource):
     def check(self):
         action= self.dst+ "/_act_conf.php"
         self.check_print(os.path.exists(action),action)
+
+    def clean(self):
+        action= self.dst+ "/_act_conf.php"
+        cmdtpl ="if test -e $DST ; then rm -f  $DST ; fi ; "
+        cmd = Template(cmdtpl).substitute(DST=action)
+        shexec.execmd(cmd)
 
 class pylon_ui(resource):
     def __init__(self,web_inf,theme="brood"):
@@ -458,6 +515,8 @@ class prj(controlor) :
 
         if cmd == "check" :
             execmd = lambda x :  x.call_check() 
+        if cmd == "clean" :
+            execmd = lambda x :  x.call_clean() 
 
         if re.match('shell:\W+',cmd) :
             x=dx_shell(vars(),cmd.split(':')[1])

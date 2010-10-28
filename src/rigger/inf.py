@@ -73,6 +73,8 @@ class resource :
         self.call_impl(self.shell)
     def call_check(self):
         self.call_impl(self.check)
+    def call_clean(self):
+        self.call_impl(self.clean)
 
     def shell(self):
         pass
@@ -87,6 +89,8 @@ class resource :
     def data(self):
         pass
     def check(self):
+        pass
+    def clean(self):
         pass
     def clsname(self):
         return self.__class__.__name__
@@ -129,6 +133,10 @@ class controlor(resource):
             for r in self.res :
                 r.call_check()
 
+    def clean(self):
+        if self.allow():
+            for r in self.res :
+                r.call_clean()
     def shell(self):
         if self.allow():
             for r in self.res :
@@ -136,7 +144,7 @@ class controlor(resource):
     def allow(self):
         return True
     def append(self,item):
-#        print(dir(self.res))
+        #        print(dir(self.res))
 #        print(self.res)
         self.res.append(item)
 
