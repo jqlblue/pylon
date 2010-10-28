@@ -302,7 +302,7 @@ class path(resource):
             v=  env_exp.value(v)
             self.paths.append( v )
     def config(self):
-        cmdtpl ="rm -rf  $DST ; mkdir -p   $DST ; chmod a+w  $DST; "
+        cmdtpl ="if test ! -e $DST; then   mkdir -p $DST ; fi ;   chmod a+w  $DST; "
         for v in self.paths :
             cmd = Template(cmdtpl).substitute(DST=v)
             shexec.execmd(cmd)
