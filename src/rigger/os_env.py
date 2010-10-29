@@ -9,6 +9,7 @@ class env_conf:
     php_cgi          = "/usr/local/php/bin/php-cgi"
     php              = "/usr/local/php/bin/php"
     python           = "python"
+    syslog           = "/etc/rc.d/init.d/syslog-ng"
 
 
 

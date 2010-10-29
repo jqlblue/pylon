@@ -197,6 +197,35 @@ class host(resource):
         c = Template(cmdtpl).substitute(PYTHON=get_env_conf().python,PATH=path,IP=self.ip,DOMAIN=self.domain)
         shexec.execmd(c)
 
+class syslog(resource):
+    append= None
+    conf  = "/etc/syslog.conf"
+    def __init__(self):
+        pass
+    def locate(self):
+        self.conf     = env_exp.value(self.conf)
+        self.append   = env_exp.value(self.append)
+        self.prj_name = env_exp.value("${PRJ_NAME}")
+
+    def config(self):
+        path=os.path.dirname(os.path.realpath(__file__))
+        cmdtpl="$PYTHON $PATH/sysconf.py  -n $NAME -f $CONF -t '#' -c '$APPEND' -p file "
+        c = Template(cmdtpl).substitute(PYTHON=get_env_conf().python,PATH=path,NAME=self.prj_name,
+                APPEND=self.append,CONF=self.conf)
+        shexec.execmd(c)
+
+    def clean(self):
+        path=os.path.dirname(os.path.realpath(__file__))
+        cmdtpl="$PYTHON $PATH/sysconf.py  -n $NAME -f $CONF -t '#' -c '' "
+        c = Template(cmdtpl).substitute(PYTHON=get_env_conf().python,PATH=path,NAME=self.prj_name,
+                CONF=self.conf)
+        shexec.execmd(c)
+    def start(self):
+        cmdtpl ="$SYSLOG_CTRL reload"
+        c = Template(cmdtpl).substitute(SYSLOG_CTRL=get_env_conf().syslog)
+        shexec.execmd(c)
+
+
 class links(resource):
     links_map={}
     def __init__(self,map):
